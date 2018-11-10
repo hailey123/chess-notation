@@ -1,0 +1,26 @@
+.board {
+  height: 700px;
+  width: 700px;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+}
+
+.rank {
+  display: flex;
+  flex: 1;
+}
+
+.square {
+  border: 1px solid black;
+  flex: 1;
+}
+
+.square:hover {
+  background-color: rgba(255, 217, 0)!important;
+  cursor: pointer;
+}
+
+.square:active {
+  background-color: red!important;
+}

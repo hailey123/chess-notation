@@ -6,7 +6,9 @@ import './NotationInstruction.css';
 
 class NotationInstruction extends React.PureComponent<NotationInstructionProps> {
   render(): JSX.Element {
-    return <div className="notation-instruction">F3</div>;
+    const { currentCoords } = this.props;
+    const displayCoords = currentCoords ? currentCoords.file + currentCoords.rank : '';
+    return <div className="notation-instruction">{displayCoords}</div>;
   }
 }
 

@@ -25,7 +25,7 @@ function generateRandomCoords(lastCoordinates?: Coordinate): Coordinate {
   return { rank: nextRank, file: nextFile };
 }
 
-export function enthusiasm(state: StoreState, action: CoordsIndicatorAction): StoreState {
+export function notationInstruction(state: StoreState, action: CoordsIndicatorAction): StoreState {
   switch (action.type) {
     case SHOW_NEXT_COORDS:
       const nextCoords = generateRandomCoords(state.currentCoords);

@@ -1,7 +1,7 @@
 import { Rank, File } from 'src/types';
 
 export const ranks: Rank[] = [1, 2, 3, 4, 5, 6, 7, 8];
-export const files: File[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+export const files: File[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 export const START_ROUND = 'START_ROUND';
 export type START_ROUND = typeof START_ROUND;

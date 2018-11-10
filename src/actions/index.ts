@@ -24,3 +24,5 @@ export function handleClick(coordinate: Coordinate): HandleClick {
     square: coordinate
   };
 }
+
+export type ChessNotationAction = CoordsIndicatorAction;

@@ -1,3 +1,5 @@
-export type NotationInstructionProps = {
+import { Coordinate } from 'src/types';
 
+export type NotationInstructionProps = {
+  currentCoords?: Coordinate
 };

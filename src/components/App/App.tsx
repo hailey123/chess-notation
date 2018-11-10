@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Board from '../Board';
-import NotationInstruction from '../NotationInstruction/NotationInstruction';
+import NotationInstruction from '../NotationInstruction';
 
 import './App.css';
 // import logo from './logo.svg';

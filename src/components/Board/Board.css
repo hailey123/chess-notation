@@ -1,16 +1,16 @@
 .board {
-  height: 720px;
-  width: 720px;
-  padding: 20px;
+  height: 700px;
+  width: 700px;
+  padding: 40px;
   margin: 10px auto;
-  background-color: #eae1d7;
+  background-color: #353535;
   display: flex;
   border: 1px solid black;
   box-shadow: 0 0 10px;
 }
 
 .squares {
-  border: 1px solid black;
+  border: 2px solid black;
   box-shadow: 0 0 10px;
   display: flex;
   flex: 1;
@@ -23,7 +23,6 @@
 }
 
 .square {
-  border: 1px solid black;
   flex: 1;
 }
 

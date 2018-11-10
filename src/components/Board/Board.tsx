@@ -20,7 +20,7 @@ class Board extends React.PureComponent<IProps> {
   render(): JSX.Element {
     const {
       playAsBlack = false,
-      darkSquareColor = '#2b2b2b',
+      darkSquareColor = '#353535',
       lightSquareColor = '#eae1d7'
     } = this.props;
     let orderedRanks: number[];

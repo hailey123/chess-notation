@@ -1,14 +1,13 @@
 import * as React from 'react';
 import './Board.css';
+import { Rank, File } from 'src/types';
+import { ranks, files } from 'src/constants';
 
 export interface IProps {
   playAsBlack?: boolean;
   lightSquareColor?: string;
   darkSquareColor?: string;
 }
-
-const ranks = [1, 2, 3, 4, 5, 6, 7, 8];
-const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 class Board extends React.PureComponent<IProps> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
@@ -23,8 +22,8 @@ class Board extends React.PureComponent<IProps> {
       darkSquareColor = '#353535',
       lightSquareColor = '#eae1d7'
     } = this.props;
-    let orderedRanks: number[];
-    let orderedFiles: string[];
+    let orderedRanks: Rank[];
+    let orderedFiles: File[];
 
     if (playAsBlack) {
       orderedRanks = ranks;

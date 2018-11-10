@@ -1,7 +1,9 @@
 import * as React from 'react';
-import './App.css';
 
-import Board from './components/Board';
+import Board from '../Board';
+import NotationInstruction from '../NotationInstruction/NotationInstruction';
+
+import './App.css';
 // import logo from './logo.svg';
 
 class App extends React.Component {
@@ -13,7 +15,7 @@ class App extends React.Component {
           <h1 className="App-title">Board Coordinates Practice</h1>
         </header>
         <Board />
-        <div className="instruction">F3</div>
+        <NotationInstruction />
       </div>
     );
   }

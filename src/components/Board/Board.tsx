@@ -1,15 +1,12 @@
 import * as React from 'react';
-import './Board.css';
+
 import { Rank, File } from 'src/types';
 import { ranks, files } from 'src/constants';
+import { BoardProps } from './props';
 
-export interface IProps {
-  playAsBlack?: boolean;
-  lightSquareColor?: string;
-  darkSquareColor?: string;
-}
+import './Board.css';
 
-class Board extends React.PureComponent<IProps> {
+class Board extends React.PureComponent<BoardProps> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
     console.log(rankIndex, fileIndex);
 

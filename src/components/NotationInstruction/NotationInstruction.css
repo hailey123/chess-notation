@@ -1,0 +1,14 @@
+.notation-instruction {
+  height: 50px;
+  width: 80px;
+  font-size: 2em;
+  font-family: 'Cabin', sans-serif;
+  color: white;
+  margin: 10px auto;
+  border-radius: 8px;
+  border: 2px solid black;
+  background-color: rgb(19, 163, 74);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

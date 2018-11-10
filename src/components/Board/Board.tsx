@@ -20,8 +20,8 @@ class Board extends React.PureComponent<IProps> {
   render(): JSX.Element {
     const {
       playAsBlack = false,
-      darkSquareColor = 'darkslategrey',
-      lightSquareColor = 'bisque'
+      darkSquareColor = '#2b2b2b',
+      lightSquareColor = '#eae1d7'
     } = this.props;
     let orderedRanks: number[];
     let orderedFiles: string[];
@@ -36,20 +36,22 @@ class Board extends React.PureComponent<IProps> {
 
     return (
       <div className="board">
-        {
-          orderedRanks.map((rank, rankIndex) =>
-            <div key={rank} className="rank">
-              {orderedFiles.map((file, fileIndex) => <div
-                key={file}
-                className="square"
-                style={{
-                  backgroundColor: this.isDarkSquare(rankIndex, fileIndex)
-                    ? darkSquareColor
-                    : lightSquareColor,
-                }}>{file + rank}</div>)}
-            </div>,
-          )
-        }
+        <div className="squares">
+          {
+            orderedRanks.map((rank, rankIndex) =>
+              <div key={rank} className="rank">
+                {orderedFiles.map((file, fileIndex) => <div
+                  key={file}
+                  className="square"
+                  style={{
+                    backgroundColor: this.isDarkSquare(rankIndex, fileIndex)
+                      ? darkSquareColor
+                      : lightSquareColor,
+                  }}>{/*file + rank*/}</div>)}
+              </div>,
+            )
+          }
+        </div>
       </div>
     );
   }

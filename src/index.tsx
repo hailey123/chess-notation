@@ -11,11 +11,11 @@ import settings from './reducers/settings';
 import { StoreState } from './types';
 
 import './index.css';
-import { ChessNotationAction } from './actions';
+import { Action } from './actions';
 
 const rootReducer = combineReducers({ game, leaderboard, settings });
 
-const store = createStore<StoreState, ChessNotationAction, any, any>(
+const store = createStore<StoreState, Action, any, any>(
   rootReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION__
   && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );

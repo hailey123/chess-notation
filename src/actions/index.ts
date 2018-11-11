@@ -1,4 +1,4 @@
-import * as constants from '../constants';
+import * as constants from '../constants/actions';
 import { Coordinate } from 'src/types';
 
 export interface ShowNextCoords {
@@ -9,8 +9,6 @@ export interface HandleClick {
   type: constants.HANDLE_CLICK;
   square: Coordinate;
 }
-
-export type Action = ShowNextCoords | HandleClick;
 
 export function showNextCoords(): ShowNextCoords {
   return {
@@ -25,4 +23,4 @@ export function handleClick(coordinate: Coordinate): HandleClick {
   };
 }
 
-export type ChessNotationAction = Action;
+export type Action = ShowNextCoords | HandleClick;

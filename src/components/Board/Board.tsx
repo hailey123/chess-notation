@@ -1,15 +1,13 @@
 import * as React from 'react';
 
 import { Rank, File } from 'src/types';
-import { ranks, files } from 'src/constants';
+import { ranks, files } from 'src/constants/models';
 import { BoardProps } from './props';
 
 import './Board.css';
 
 class Board extends React.PureComponent<BoardProps> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
-    console.log(rankIndex, fileIndex);
-
     return !(fileIndex % 2) && !!(rankIndex % 2) || !!(fileIndex % 2) && !(rankIndex % 2);
   }
 

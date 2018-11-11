@@ -1,6 +1,7 @@
 import { Action } from '../actions';
 import { GameState, Coordinate } from '../types';
-import { SHOW_NEXT_COORDS, HANDLE_CLICK, files, ranks } from '../constants';
+import { files, ranks } from '../constants/models';
+import { SHOW_NEXT_COORDS, HANDLE_CLICK } from '../constants/actions';
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)

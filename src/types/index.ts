@@ -13,13 +13,9 @@ export interface GameState {
   currentCoords?: Coordinate; // Coords currectly show & awaiting click on board
 }
 
-export interface LeaderboardState {
+export interface LeaderboardState { }
 
-}
-
-export interface SettingsState {
-
-}
+export interface SettingsState { }
 
 export interface StoreState {
   game: GameState;

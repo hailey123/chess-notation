@@ -1,22 +1,21 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import { notationInstruction } from './reducers';
-import { StoreState } from './types/index';
+import game from './reducers/game';
+import leaderboard from './reducers/leaderboard';
+import settings from './reducers/settings';
+import { StoreState } from './types';
 
 import './index.css';
 import { ChessNotationAction } from './actions';
 
-const store = createStore<StoreState, ChessNotationAction, any, any>(notationInstruction, {
-  inGameLoop: false,
-  coordsPerRound: 8,
-  showingTimingResult: false,
-  currentCoords: { file: 'F', rank: 3 }
-});
+const rootReducer = combineReducers({ game, leaderboard, settings });
+
+const store = createStore<StoreState, ChessNotationAction, any, any>(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

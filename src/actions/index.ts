@@ -10,7 +10,7 @@ export interface HandleClick {
   square: Coordinate;
 }
 
-export type CoordsIndicatorAction = ShowNextCoords | HandleClick;
+export type Action = ShowNextCoords | HandleClick;
 
 export function showNextCoords(): ShowNextCoords {
   return {
@@ -25,4 +25,4 @@ export function handleClick(coordinate: Coordinate): HandleClick {
   };
 }
 
-export type ChessNotationAction = CoordsIndicatorAction;
+export type ChessNotationAction = Action;

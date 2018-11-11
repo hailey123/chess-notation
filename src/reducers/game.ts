@@ -1,5 +1,5 @@
-import { CoordsIndicatorAction } from '../actions';
-import { StoreState, Coordinate } from '../types';
+import { Action } from '../actions';
+import { GameState, Coordinate } from '../types';
 import { SHOW_NEXT_COORDS, HANDLE_CLICK, files, ranks } from '../constants';
 
 /**
@@ -25,7 +25,14 @@ function generateRandomCoords(lastCoordinates?: Coordinate): Coordinate {
   return { rank: nextRank, file: nextFile };
 }
 
-export function notationInstruction(state: StoreState, action: CoordsIndicatorAction): StoreState {
+export default function game(
+  state: GameState = {
+    inGameLoop: false,
+    coordsPerRound: 8,
+    showingTimingResult: false,
+    currentCoords: { file: 'F', rank: 3 }
+  },
+  action: Action): GameState {
   switch (action.type) {
     case SHOW_NEXT_COORDS:
       const nextCoords = generateRandomCoords(state.currentCoords);

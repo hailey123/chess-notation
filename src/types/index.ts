@@ -6,9 +6,23 @@ export type Coordinate = {
   file: File
 };
 
-export interface StoreState {
+export interface GameState {
   inGameLoop: boolean; // Whether a round is in progress
-  coordsPerRound: number; // Number of challenges/correct clicks per round
+  coordsPerRound: number; // Number of coordinates displayed per roundee
   showingTimingResult: boolean; // Showing results of a round
   currentCoords?: Coordinate; // Coords currectly show & awaiting click on board
+}
+
+export interface LeaderboardState {
+
+}
+
+export interface SettingsState {
+
+}
+
+export interface StoreState {
+  game: GameState;
+  leaderboard: LeaderboardState;
+  settings: SettingsState;
 }

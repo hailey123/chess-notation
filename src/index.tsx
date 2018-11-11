@@ -15,7 +15,10 @@ import { ChessNotationAction } from './actions';
 
 const rootReducer = combineReducers({ game, leaderboard, settings });
 
-const store = createStore<StoreState, ChessNotationAction, any, any>(rootReducer);
+const store = createStore<StoreState, ChessNotationAction, any, any>(
+  rootReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION__
+  && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <Provider store={store}>

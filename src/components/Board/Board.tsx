@@ -5,6 +5,7 @@ import { ranks, files } from 'src/constants/models';
 import { BoardProps } from './props';
 
 import './Board.css';
+import BoardSquare from '../BoardSquare';
 
 class Board extends React.PureComponent<BoardProps> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
@@ -31,20 +32,18 @@ class Board extends React.PureComponent<BoardProps> {
     return (
       <div className="board">
         <div className="squares">
-          {
-            orderedRanks.map((rank, rankIndex) =>
-              <div key={rank} className="rank">
-                {orderedFiles.map((file, fileIndex) => <div
+          {orderedRanks.map((rank, rankIndex) =>
+            <div key={rank} className="rank">
+              {orderedFiles.map((file, fileIndex) =>
+                <BoardSquare
                   key={file}
-                  className="square"
-                  style={{
-                    backgroundColor: this.isDarkSquare(rankIndex, fileIndex)
-                      ? darkSquareColor
-                      : lightSquareColor,
-                  }}>{/*file + rank*/}</div>)}
-              </div>,
-            )
-          }
+                  color={this.isDarkSquare(rankIndex, fileIndex)
+                    ? darkSquareColor
+                    : lightSquareColor}
+                  coordinate={{ rank, file }}
+                />)}
+            </div>
+          )}
         </div>
       </div>
     );

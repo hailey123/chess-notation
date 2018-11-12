@@ -1,6 +1,10 @@
 import { Coordinate } from 'src/types';
 
-export type BoardSquareProps = {
+export type PropsPassedIn = {
   coordinate: Coordinate,
-  color: string
+  color: string,
+};
+
+export type PropsFromDispatch = {
+  handleClickAtCoordinate: () => void
 };

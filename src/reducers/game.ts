@@ -39,9 +39,9 @@ export default function game(
       const nextCoords = generateRandomCoords(state.currentCoords);
       return { ...state, currentCoords: nextCoords };
     case HANDLE_CLICK:
-      // TODO: handle clicking on a particular square
-      // Either show the next coords or end the round
-      return { ...state };
+      // TODO: Fix, as this is not the desired behaviour. Currently just updating the
+      // coordinate in the instruction so we can see something's happening.
+      return { ...state, currentCoords: action.square };
   }
   return state;
 }

@@ -5,8 +5,8 @@ export interface ShowNextCoords {
   type: constants.SHOW_NEXT_COORDS;
 }
 
-export interface HandleClick {
-  type: constants.HANDLE_CLICK;
+export interface HandleSquareClicked {
+  type: constants.HANDLE_SQUARE_CLICKED;
   square: Coordinate;
 }
 
@@ -16,11 +16,11 @@ export function showNextCoords(): ShowNextCoords {
   };
 }
 
-export function handleClick(coordinate: Coordinate): HandleClick {
+export function handleSquareClicked(coordinate: Coordinate): HandleSquareClicked {
   return {
-    type: constants.HANDLE_CLICK,
+    type: constants.HANDLE_SQUARE_CLICKED,
     square: coordinate
   };
 }
 
-export type Action = ShowNextCoords | HandleClick;
+export type Action = ShowNextCoords | HandleSquareClicked;

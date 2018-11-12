@@ -9,10 +9,10 @@ import './App.css';
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Board Coordinates Practice</h1>
+      <div className="app">
+        <header className="app-header">
+          {/* <img src={logo} className='app-logo' alt='logo' /> */}
+          <h1 className="app-title">Board Coordinates Practice</h1>
         </header>
         <Board />
         <NotationInstruction />

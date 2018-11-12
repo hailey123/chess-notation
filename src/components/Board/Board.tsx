@@ -3,11 +3,11 @@ import * as React from 'react';
 import { Rank, File } from 'src/types';
 import { ranks, files } from 'src/constants/models';
 import { PropsFromState } from './props';
-
-type Props = PropsFromState;
+import BoardSquare from '../BoardSquare';
 
 import './Board.css';
-import BoardSquare from '../BoardSquare';
+
+type Props = PropsFromState;
 
 class Board extends React.PureComponent<Props> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {

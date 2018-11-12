@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { PropsPassedIn, PropsFromDispatch } from './props';
 
-type Props = PropsPassedIn & PropsFromDispatch;
-
 import './BoardSquare.css';
+
+type Props = PropsPassedIn & PropsFromDispatch;
 
 class BoardSquare extends React.PureComponent<Props> {
   constructor(props: Props) {
@@ -22,6 +22,8 @@ class BoardSquare extends React.PureComponent<Props> {
         backgroundColor: color
       }}
       onClick={this.handleClick}>{
+        // Uncomment the below line to see the coordinates on the squares
+        // for testing purposes:
         // this.props.coordinate.file + this.props.coordinate.rank
       }</div>;
   }

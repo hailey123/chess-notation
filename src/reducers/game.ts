@@ -1,7 +1,7 @@
 import { Action } from '../actions';
 import { GameState, Coordinate } from '../types';
 import { files, ranks } from '../constants/models';
-import { SHOW_NEXT_COORDS, HANDLE_CLICK } from '../constants/actions';
+import { SHOW_NEXT_COORDS, HANDLE_SQUARE_CLICKED } from '../constants/actions';
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
@@ -38,7 +38,7 @@ export default function game(
     case SHOW_NEXT_COORDS:
       const nextCoords = generateRandomCoords(state.currentCoords);
       return { ...state, currentCoords: nextCoords };
-    case HANDLE_CLICK:
+    case HANDLE_SQUARE_CLICKED:
       // TODO: Fix, as this is not the desired behaviour. Currently just updating the
       // coordinate in the instruction so we can see something's happening.
       return { ...state, currentCoords: action.square };

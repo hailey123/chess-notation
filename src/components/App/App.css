@@ -1,13 +1,13 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
+.app-logo {
+  animation: app-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.App-header {
+.app-header {
   background-color: #222;
   height: 35px;
   display: flex;
@@ -17,15 +17,15 @@
   font-family: 'Cabin', sans-serif;
 }
 
-.App-title {
+.app-title {
   font-size: 1.2em;
 }
 
-.App-intro {
+.app-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+@keyframes app-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }

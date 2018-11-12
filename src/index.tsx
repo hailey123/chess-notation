@@ -9,9 +9,9 @@ import game from './reducers/game';
 import leaderboard from './reducers/leaderboard';
 import settings from './reducers/settings';
 import { StoreState } from './types';
+import { Action } from './actions';
 
 import './index.css';
-import { Action } from './actions';
 
 const rootReducer = combineReducers({ game, leaderboard, settings });
 

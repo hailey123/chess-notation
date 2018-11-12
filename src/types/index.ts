@@ -15,7 +15,11 @@ export interface GameState {
 
 export interface LeaderboardState { }
 
-export interface SettingsState { }
+export interface SettingsState {
+  playAsBlack?: boolean;
+  lightSquareColor?: string;
+  darkSquareColor?: string;
+}
 
 export interface StoreState {
   game: GameState;

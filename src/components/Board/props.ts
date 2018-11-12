@@ -1,5 +1,5 @@
-export interface BoardProps {
-  playAsBlack?: boolean;
-  lightSquareColor?: string;
-  darkSquareColor?: string;
+export interface PropsFromState {
+  playAsBlack: boolean;
+  lightSquareColor: string;
+  darkSquareColor: string;
 }

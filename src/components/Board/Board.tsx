@@ -2,21 +2,23 @@ import * as React from 'react';
 
 import { Rank, File } from 'src/types';
 import { ranks, files } from 'src/constants/models';
-import { BoardProps } from './props';
+import { PropsFromState } from './props';
+
+type Props = PropsFromState;
 
 import './Board.css';
 import BoardSquare from '../BoardSquare';
 
-class Board extends React.PureComponent<BoardProps> {
+class Board extends React.PureComponent<Props> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
     return !(fileIndex % 2) && !!(rankIndex % 2) || !!(fileIndex % 2) && !(rankIndex % 2);
   }
 
   render(): JSX.Element {
     const {
-      playAsBlack = false,
-      darkSquareColor = '#353535',
-      lightSquareColor = '#eae1d7'
+      playAsBlack,
+      darkSquareColor,
+      lightSquareColor
     } = this.props;
     let orderedRanks: Rank[];
     let orderedFiles: File[];

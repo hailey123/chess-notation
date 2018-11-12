@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-import { NotationInstructionProps } from './props';
+import { PropsFromState } from './props';
 
 import './NotationInstruction.css';
 
-class NotationInstruction extends React.PureComponent<NotationInstructionProps> {
+type Props = PropsFromState;
+
+class NotationInstruction extends React.PureComponent<Props> {
   render(): JSX.Element {
     const { currentCoords } = this.props;
     const displayCoords = currentCoords ? currentCoords.file + currentCoords.rank : '';

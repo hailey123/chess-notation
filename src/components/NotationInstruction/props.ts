@@ -1,5 +1,5 @@
 import { Coordinate } from 'src/types';
 
-export type NotationInstructionProps = {
+export type PropsFromState = {
   currentCoords?: Coordinate
 };

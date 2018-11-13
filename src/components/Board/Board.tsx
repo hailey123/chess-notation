@@ -1,30 +1,27 @@
 import * as React from 'react';
+
+import { Rank, File } from 'src/types';
+import { ranks, files } from 'src/constants/models';
+import { PropsFromState } from './props';
+import BoardSquare from '../BoardSquare';
+
 import './Board.css';
 
-export interface IProps {
-  playAsBlack?: boolean;
-  lightSquareColor?: string;
-  darkSquareColor?: string;
-}
+type Props = PropsFromState;
 
-const ranks = [1, 2, 3, 4, 5, 6, 7, 8];
-const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-
-class Board extends React.PureComponent<IProps> {
+class Board extends React.PureComponent<Props> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
-    console.log(rankIndex, fileIndex);
-
     return !(fileIndex % 2) && !!(rankIndex % 2) || !!(fileIndex % 2) && !(rankIndex % 2);
   }
 
   render(): JSX.Element {
     const {
-      playAsBlack = false,
-      darkSquareColor = '#353535',
-      lightSquareColor = '#eae1d7'
+      playAsBlack,
+      darkSquareColor,
+      lightSquareColor
     } = this.props;
-    let orderedRanks: number[];
-    let orderedFiles: string[];
+    let orderedRanks: Rank[];
+    let orderedFiles: File[];
 
     if (playAsBlack) {
       orderedRanks = ranks;
@@ -37,20 +34,18 @@ class Board extends React.PureComponent<IProps> {
     return (
       <div className="board">
         <div className="squares">
-          {
-            orderedRanks.map((rank, rankIndex) =>
-              <div key={rank} className="rank">
-                {orderedFiles.map((file, fileIndex) => <div
+          {orderedRanks.map((rank, rankIndex) =>
+            <div key={rank} className="rank">
+              {orderedFiles.map((file, fileIndex) =>
+                <BoardSquare
                   key={file}
-                  className="square"
-                  style={{
-                    backgroundColor: this.isDarkSquare(rankIndex, fileIndex)
-                      ? darkSquareColor
-                      : lightSquareColor,
-                  }}>{/*file + rank*/}</div>)}
-              </div>,
-            )
-          }
+                  color={this.isDarkSquare(rankIndex, fileIndex)
+                    ? darkSquareColor
+                    : lightSquareColor}
+                  coordinate={{ rank, file }}
+                />)}
+            </div>
+          )}
         </div>
       </div>
     );

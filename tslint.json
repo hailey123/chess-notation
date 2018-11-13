@@ -9,6 +9,7 @@
   },
   "rules": {
     "trailing-comma": false,
-    "ter-arrow-parens": false
+    "ter-arrow-parens": false,
+    "variable-name": false
   }
 }

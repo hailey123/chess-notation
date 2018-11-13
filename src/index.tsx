@@ -1,11 +1,29 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import game from './reducers/game';
+import leaderboard from './reducers/leaderboard';
+import settings from './reducers/settings';
+import { StoreState } from './types';
+import { Action } from './actions';
+
+import './index.css';
+
+const rootReducer = combineReducers({ game, leaderboard, settings });
+
+const store = createStore<StoreState, Action, any, any>(
+  rootReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION__
+  && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider >,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

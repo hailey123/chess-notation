@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Rank, File } from 'src/types';
-import { ranks, files } from 'src/constants/models';
+import { ranks, files } from '../../constants/models';
 import { PropsFromState } from './props';
 import BoardSquare from '../BoardSquare';
 

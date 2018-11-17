@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import BoardSquare from './BoardSquare';
 import { Dispatch } from 'react';
-import { Action, handleSquareClicked } from 'src/actions';
+import { Action, handleSquareClicked } from '../../actions';
 import { PropsPassedIn } from './props';
 
 function mapDispatchToProps(dispatch: Dispatch<Action>, ownProps: PropsPassedIn) {

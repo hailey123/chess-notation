@@ -1,7 +1,7 @@
 .board {
-  height: 680px;
-  width: 680px;
-  padding: 40px;
+  height: 620px;
+  width: 620px;
+  padding: 20px;
   margin: 10px auto;
   background-color: #353535;
   display: flex;

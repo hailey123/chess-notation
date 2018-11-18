@@ -11,6 +11,7 @@ TODO
 ### Build & Run
 
 ```
+npm install
 npm run start
 ```
 
@@ -22,7 +23,7 @@ npm run start
 npm run test
 ```
 
-#### In VS Code
+#### Debug Tests in VS Code
 
 1. Set desired breakpoints in code by hovering your mouse to the left of the desired line number and clicking when a red circle appears.
 2. Open the debug panel on the left-hand side of the window.

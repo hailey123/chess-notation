@@ -1,5 +1,7 @@
 import { Coordinate } from 'src/types';
 
-export type PropsFromState = {
+type PropsFromState = {
   currentCoords?: Coordinate
 };
+
+export type Props = PropsFromState;

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Board from '../Board';
 import NotationInstruction from '../NotationInstruction';
+import StartButton from '../StartButton';
 
 import './App.css';
 // import logo from './logo.svg';
@@ -16,6 +17,7 @@ class App extends React.Component {
         </header>
         <Board />
         <NotationInstruction />
+        <StartButton />
       </div>
     );
   }

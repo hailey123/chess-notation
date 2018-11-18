@@ -13,26 +13,26 @@ export function getRandomInt(min: number, max: number) {
  * @param possibleValues list of all valid values
  */
 export function generateNextValue<T>(possibleValues: T[]): T {
-  const maxCoordIndex = possibleValues.length - 1;
-  return possibleValues[getRandomInt(0, maxCoordIndex)];
+  const maxCoordinateIndex = possibleValues.length - 1;
+  return possibleValues[getRandomInt(0, maxCoordinateIndex)];
 }
 
-export function coordinatesEqual(coord1: Coordinate, coord2: Coordinate) {
-  return coord1.rank === coord2.rank && coord1.file === coord2.file;
+export function coordinatesEqual(coordinate1: Coordinate, coordinate2: Coordinate) {
+  return coordinate1.rank === coordinate2.rank && coordinate1.file === coordinate2.file;
 }
 
 /**
  * Generates the next set of valid board coordinates.
- * @param lastCoordinates previous coordinates, which the new coordinates should not equal
+ * @param lastCoords previous coordinates, which the new coordinates should not equal
  */
-export function generateRandomCoords(lastCoordinates?: Coordinate): Coordinate {
+export function generateRandomCoords(lastCoords?: Coordinate): Coordinate {
   const nextCoords = { rank: generateNextValue(ranks), file: generateNextValue(files) };
 
-  if (!lastCoordinates) {
+  if (!lastCoords) {
     return nextCoords;
   }
 
-  while (coordinatesEqual(nextCoords, lastCoordinates)) {
+  while (coordinatesEqual(nextCoords, lastCoords)) {
     nextCoords.rank = generateNextValue(ranks);
     nextCoords.file = generateNextValue(files);
   }

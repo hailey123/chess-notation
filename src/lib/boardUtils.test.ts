@@ -1,16 +1,17 @@
 import * as utils from './boardUtils';
 import { Coordinate } from 'src/types';
+import { files, ranks } from '../constants/models';
 
 describe('board utils', () => {
   const maxRandomInt = 1 - 1e-16;
-  let coordinates: Coordinate;
+  let coords: Coordinate;
 
   beforeAll(() => {
-    coordinates = {
+    coords = {
       file: 'G',
       rank: 8
     };
-    Object.freeze(coordinates);
+    Object.freeze(coords);
   });
 
   describe('getRandomInt', () => {
@@ -59,19 +60,19 @@ describe('board utils', () => {
 
   describe('coordinatesEqual', () => {
     it('recognizes equal coordinates', () => {
-      expect(utils.coordinatesEqual(coordinates, {
+      expect(utils.coordinatesEqual(coords, {
         file: 'G',
         rank: 8
       })).toBeTruthy();
     });
     it('recognizes unequal files', () => {
-      expect(utils.coordinatesEqual(coordinates, {
+      expect(utils.coordinatesEqual(coords, {
         file: 'A',
         rank: 8
       })).toBeFalsy();
     });
     it('recognizes unequal ranks', () => {
-      expect(utils.coordinatesEqual(coordinates, {
+      expect(utils.coordinatesEqual(coords, {
         file: 'G',
         rank: 1
       })).toBeFalsy();
@@ -83,30 +84,32 @@ describe('board utils', () => {
       expect(utils.generateRandomCoords()).toBeDefined();
     });
     it('works when the last coordinates are provided', () => {
-      const nextCoords = utils.generateRandomCoords(coordinates);
+      const nextCoords = utils.generateRandomCoords(coords);
 
-      expect(utils.coordinatesEqual(nextCoords, coordinates)).toBeFalsy();
+      expect(utils.coordinatesEqual(nextCoords, coords)).toBeFalsy();
     });
-    it('works when the random generation must be repeated', () => {
-      const lastCoordinates: Coordinate = {
-        file: 'A',
-        rank: 1
+    it('works when random generation initially gives values the same as the previous', () => {
+      const initialRankOrFileIndex = 0;
+      const lastCoords: Coordinate = {
+        file: files[initialRankOrFileIndex],
+        rank: ranks[initialRankOrFileIndex]
       };
-
-      // This will cause nextCoords to equal lastCoordinates in the first pass thru,
-      // thus triggering the while loop
-      let times = 0;
+      let mockCallCount = 0;
+      const mockFor = 2;
       const mockRandom = jest.spyOn(Math, 'random').mockImplementation(() => {
-        times += 1;
-        if (times <= 2) {
-          return 0;
+        mockCallCount += 1;
+        if (mockCallCount <= mockFor) {
+          // This will cause the generated nextCoords to equal lastCoords in
+          // generateRandomCoords, thus triggering execution of the while loop
+          return initialRankOrFileIndex;
         }
-        return 1;
+
+        return initialRankOrFileIndex + 1;
       });
 
-      const nextCoords = utils.generateRandomCoords(lastCoordinates);
+      const nextCoords = utils.generateRandomCoords(lastCoords);
 
-      expect(utils.coordinatesEqual(nextCoords, coordinates)).toBeFalsy();
+      expect(utils.coordinatesEqual(nextCoords, coords)).toBeFalsy();
 
       mockRandom.mockRestore();
     });

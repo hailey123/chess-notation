@@ -3,15 +3,15 @@ import { Coordinate } from 'src/types';
 import { files, ranks } from '../constants/models';
 
 describe('board utils', () => {
-  const maxRandomInt = 1 - 1e-16;
-  let coords: Coordinate;
+  const maxMathRandom = 1 - 1e-16;
+  let coordinates: Coordinate;
 
   beforeAll(() => {
-    coords = {
+    coordinates = {
       file: 'G',
       rank: 8
     };
-    Object.freeze(coords);
+    Object.freeze(coordinates);
   });
 
   describe('getRandomInt', () => {
@@ -26,7 +26,7 @@ describe('board utils', () => {
       mockRandom.mockRestore();
     });
     it('returns the max value', () => {
-      const mockRandom = jest.spyOn(Math, 'random').mockReturnValue(maxRandomInt);
+      const mockRandom = jest.spyOn(Math, 'random').mockReturnValue(maxMathRandom);
 
       expect(utils.getRandomInt(min, max)).toBe(max);
 
@@ -50,7 +50,7 @@ describe('board utils', () => {
       mockRandom.mockRestore();
     });
     it('returns the last possible value', () => {
-      const mockRandom = jest.spyOn(Math, 'random').mockReturnValue(maxRandomInt);
+      const mockRandom = jest.spyOn(Math, 'random').mockReturnValue(maxMathRandom);
 
       expect(utils.generateNextValue(values)).toBe(values[values.length - 1]);
 
@@ -60,21 +60,27 @@ describe('board utils', () => {
 
   describe('coordinatesEqual', () => {
     it('recognizes equal coordinates', () => {
-      expect(utils.coordinatesEqual(coords, {
-        file: 'G',
-        rank: 8
+      expect(utils.coordinatesEqual(coordinates, {
+        file: coordinates.file,
+        rank: coordinates.rank
       })).toBeTruthy();
     });
     it('recognizes unequal files', () => {
-      expect(utils.coordinatesEqual(coords, {
-        file: 'A',
-        rank: 8
+      const fileIndex = (files.indexOf(coordinates.file) + 1) % files.length;
+      const file = files[fileIndex];
+
+      expect(utils.coordinatesEqual(coordinates, {
+        file,
+        rank: coordinates.rank
       })).toBeFalsy();
     });
     it('recognizes unequal ranks', () => {
-      expect(utils.coordinatesEqual(coords, {
-        file: 'G',
-        rank: 1
+      const rankIndex = (ranks.indexOf(coordinates.rank) + 1) % ranks.length;
+      const rank = ranks[rankIndex];
+
+      expect(utils.coordinatesEqual(coordinates, {
+        rank,
+        file: coordinates.file
       })).toBeFalsy();
     });
   });
@@ -84,9 +90,9 @@ describe('board utils', () => {
       expect(utils.generateRandomCoords()).toBeDefined();
     });
     it('works when the last coordinates are provided', () => {
-      const nextCoords = utils.generateRandomCoords(coords);
+      const nextCoords = utils.generateRandomCoords(coordinates);
 
-      expect(utils.coordinatesEqual(nextCoords, coords)).toBeFalsy();
+      expect(utils.coordinatesEqual(nextCoords, coordinates)).toBeFalsy();
     });
     it('works when random generation initially gives values the same as the previous', () => {
       const initialRankOrFileIndex = 0;
@@ -109,7 +115,7 @@ describe('board utils', () => {
 
       const nextCoords = utils.generateRandomCoords(lastCoords);
 
-      expect(utils.coordinatesEqual(nextCoords, coords)).toBeFalsy();
+      expect(utils.coordinatesEqual(nextCoords, coordinates)).toBeFalsy();
 
       mockRandom.mockRestore();
     });

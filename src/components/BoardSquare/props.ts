@@ -5,6 +5,8 @@ export type PropsPassedIn = {
   color: string,
 };
 
-export type PropsFromDispatch = {
+type PropsFromDispatch = {
   handleClickAtCoordinate: () => void
 };
+
+export type Props = PropsPassedIn & PropsFromDispatch;

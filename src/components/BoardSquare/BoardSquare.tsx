@@ -1,10 +1,8 @@
 import * as React from 'react';
 
-import { PropsPassedIn, PropsFromDispatch } from './props';
+import { Props } from './props';
 
 import './BoardSquare.css';
-
-type Props = PropsPassedIn & PropsFromDispatch;
 
 class BoardSquare extends React.PureComponent<Props> {
   constructor(props: Props) {

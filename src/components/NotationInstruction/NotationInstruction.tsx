@@ -1,10 +1,8 @@
 import * as React from 'react';
 
-import { PropsFromState } from './props';
+import { Props } from './props';
 
 import './NotationInstruction.css';
-
-type Props = PropsFromState;
 
 class NotationInstruction extends React.PureComponent<Props> {
   render(): JSX.Element {

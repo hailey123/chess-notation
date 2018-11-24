@@ -2,12 +2,10 @@ import * as React from 'react';
 
 import { Rank, File } from 'src/types';
 import { ranks, files } from '../../constants/models';
-import { PropsFromState } from './props';
+import { Props } from './props';
 import BoardSquare from '../BoardSquare';
 
 import './Board.css';
-
-type Props = PropsFromState;
 
 class Board extends React.PureComponent<Props> {
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {

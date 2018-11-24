@@ -1,30 +1,3 @@
-.app {
-  text-align: center;
-}
-
-.app-logo {
-  animation: app-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.app-header {
-  background-color: #222;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  color: white;
-  font-family: 'Cabin', sans-serif;
-}
-
-.app-title {
-  font-size: 1.2em;
-}
-
-.app-intro {
-  font-size: large;
-}
-
 main {
   display: flex;
 }

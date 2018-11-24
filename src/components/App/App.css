@@ -36,6 +36,7 @@ main {
 
 .left, .right {
   width: 200px;
+  margin: 20px;
 }
 
 .mid {

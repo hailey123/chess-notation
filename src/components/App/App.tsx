@@ -15,9 +15,16 @@ class App extends React.Component {
           {/* <img src={logo} className='app-logo' alt='logo' /> */}
           <h1 className="app-title">Board Coordinates Practice</h1>
         </header>
-        <Board />
-        <NotationInstruction />
-        <StartButton />
+        <main>
+          <div className="left" />
+          <div className="mid">
+            <NotationInstruction />
+            <Board />
+          </div>
+          <div className="right">
+            <StartButton />
+          </div>
+        </main>
       </div>
     );
   }

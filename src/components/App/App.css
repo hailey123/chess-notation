@@ -7,18 +7,18 @@ main {
   display: flex;
 }
 
-.mid, .left, .right {
+.panel-main, .panel-before, .panel-after {
   display: flex;
   flex-direction: column;
 }
 
-.left, .right {
+.panel-before, .panel-after {
   width: 220px;
   padding: 20px;
   background-color: rgba(233, 233, 233, 0.4);
 }
 
-.mid {
+.panel-main {
   flex: 1;
   align-items: center;
 }
@@ -29,13 +29,24 @@ main {
 }
 
 @media all and (max-width: 1280px) {
-  .left {
+  .panel-before {
     display: none;
   }
 }
 @media all and (max-width: 900px) {
-  .right {
-    display: none;
+  main {
+    flex-direction: column;
+  }
+
+  .panel-main {
+    flex: initial;
+  }
+
+  .panel-after {
+    width: inherit;
+    flex: 1;
+    margin-top: 20px;
+    align-items: center;
   }
 }
 @media all and (max-width: 600px) {

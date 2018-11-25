@@ -7,7 +7,7 @@ import './StartButton.css';
 
 class StartButton extends React.PureComponent<Props> {
   render(): JSX.Element {
-    return <Button variant="contained" color="secondary">Start</Button>;
+    return <Button variant="contained" color="secondary" className="start-button">Start</Button>;
   }
 }
 

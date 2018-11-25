@@ -24,12 +24,12 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
           <main>
-            <div className="left" />
-            <div className="mid">
+            <div className="panel-before" />
+            <div className="panel-main">
               <NotationInstruction />
               <Board />
             </div>
-            <div className="right">
+            <div className="panel-after">
               <StartButton />
             </div>
           </main>

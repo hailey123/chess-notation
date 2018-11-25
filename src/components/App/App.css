@@ -23,11 +23,6 @@ main {
   align-items: center;
 }
 
-@keyframes app-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 @media all and (max-width: 1280px) {
   .panel-before {
     display: none;

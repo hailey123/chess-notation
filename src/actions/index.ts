@@ -1,5 +1,5 @@
-import { ShowNextCoords, HandleSquareClicked } from './game';
+import { ShowNextCoords, HandleSquareClicked, StartRound } from './game';
 
-export type Action = ShowNextCoords | HandleSquareClicked;
+export type Action = ShowNextCoords | HandleSquareClicked | StartRound;
 
 export * from './game';

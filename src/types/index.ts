@@ -7,10 +7,11 @@ export type Coordinate = {
 };
 
 export interface GameState {
+  countingDown: boolean;
   inGameLoop: boolean; // Whether a round is in progress
-  coordsPerRound: number; // Number of coordinates displayed per roundee
+  coordsPerRound: number; // Number of coordinates displayed per round
   showingTimingResult: boolean; // Showing results of a round
-  currentCoords?: Coordinate; // Coords currectly show & awaiting click on board
+  currentCoords?: Coordinate; // Coords currently show & awaiting click on board
 }
 
 export interface LeaderboardState { }

@@ -3,3 +3,6 @@ export type SHOW_NEXT_COORDS = typeof SHOW_NEXT_COORDS;
 
 export const HANDLE_SQUARE_CLICKED = 'HANDLE_SQUARE_CLICKED';
 export type HANDLE_SQUARE_CLICKED = typeof HANDLE_SQUARE_CLICKED;
+
+export const START_ROUND = 'START_ROUND';
+export type START_ROUND = typeof START_ROUND;

@@ -7,7 +7,7 @@ describe('game reducer', () => {
   let initialState: GameState;
   beforeAll(() => {
     initialState = {
-      countingDown: false,
+      countdownValue: null,
       inGameLoop: false,
       coordsPerRound: 8,
       showingTimingResult: false,

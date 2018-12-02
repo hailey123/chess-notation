@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
@@ -16,8 +17,10 @@ import './index.css';
 const rootReducer = combineReducers({ game, leaderboard, settings });
 
 const store = createStore<StoreState, Action, any, any>(
-  rootReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION__
-  && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  applyMiddleware(reduxThunk)
+  // (window as any).__REDUX_DEVTOOLS_EXTENSION__
+  // && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(

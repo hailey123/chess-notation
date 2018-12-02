@@ -6,3 +6,9 @@ export type HANDLE_SQUARE_CLICKED = typeof HANDLE_SQUARE_CLICKED;
 
 export const START_ROUND = 'START_ROUND';
 export type START_ROUND = typeof START_ROUND;
+
+export const SET_COUNTDOWN_VALUE = 'SET_COUNTDOWN_VALUE';
+export type SET_COUNTDOWN_VALUE = typeof SET_COUNTDOWN_VALUE;
+
+export const START_PLAY = 'START_PLAY';
+export type START_PLAY = typeof START_PLAY;

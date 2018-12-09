@@ -7,7 +7,13 @@ import './StartButton.css';
 
 class StartButton extends React.PureComponent<Props> {
   render(): JSX.Element {
-    return <Button variant="contained" color="secondary" className="start-button">Start</Button>;
+    return <Button
+      variant="contained"
+      color="secondary"
+      className="start-button"
+      onClick={this.props.startRound}>
+      Start
+    </Button>;
   }
 }
 

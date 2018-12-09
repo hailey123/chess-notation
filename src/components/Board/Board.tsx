@@ -8,6 +8,7 @@ import BoardSquare from '../BoardSquare';
 import './Board.css';
 
 class Board extends React.PureComponent<Props> {
+
   isDarkSquare(rankIndex: number, fileIndex: number): boolean {
     return !(fileIndex % 2) && !!(rankIndex % 2) || !!(fileIndex % 2) && !(rankIndex % 2);
   }
@@ -28,9 +29,13 @@ class Board extends React.PureComponent<Props> {
       orderedRanks = ranks.reverse();
       orderedFiles = files;
     }
+    const { countdownValue } = this.props;
 
     return (
       <div className="board">
+        {countdownValue !== null ? <div className="countdown">
+          <p>{countdownValue}</p>
+        </div> : null}
         <div className="squares">
           {orderedRanks.map((rank, rankIndex) =>
             <div key={rank} className="rank">

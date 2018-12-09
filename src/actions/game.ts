@@ -57,7 +57,7 @@ export function startRound(): ThunkAction<Promise<void>, StoreState, null, Actio
     let countdownValue = 3;
     dispatch(setCountdownValue(countdownValue));
     return new Promise((resolve) => {
-      const msPerCount = 500;
+      const msPerCount = 1000;
 
       const interval = setInterval(() => {
         countdownValue -= 1;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 
@@ -16,11 +16,14 @@ import './index.css';
 
 const rootReducer = combineReducers({ game, leaderboard, settings });
 
+const middleware = compose(
+  applyMiddleware(reduxThunk),
+  (window as any).devToolsExtension ? (window as any).devToolsExtension() : (f: any) => f
+);
+
 const store = createStore<StoreState, Action, any, any>(
   rootReducer,
-  applyMiddleware(reduxThunk)
-  // (window as any).__REDUX_DEVTOOLS_EXTENSION__
-  // && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  middleware
 );
 
 ReactDOM.render(

@@ -25,9 +25,17 @@ export default function game(
       // coordinate in the instruction so we can see something's happening.
       return { ...state, currentCoords: action.square };
     case SET_COUNTDOWN_VALUE:
-      return { ...state, countdownValue: action.value };
+      return {
+        ...state,
+        countdownValue: action.value,
+        currentCoords: null
+      };
     case START_PLAY:
-      return { ...state, countdownValue: null, currentCoords: generateRandomCoords() };
+      return {
+        ...state,
+        countdownValue: null,
+        currentCoords: generateRandomCoords()
+      };
   }
   return state;
 }

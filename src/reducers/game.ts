@@ -11,7 +11,6 @@ import { generateRandomCoords } from '../lib/boardUtils';
 export default function game(
   state: GameState = {
     countdownValue: null,
-    inGameLoop: false,
     coordsPerRound: 8,
     showingTimingResult: false,
     currentCoords: null
@@ -28,8 +27,7 @@ export default function game(
     case SET_COUNTDOWN_VALUE:
       return { ...state, countdownValue: action.value };
     case START_PLAY:
-      // TODO: other stuff?
-      return { ...state, countdownValue: null };
+      return { ...state, countdownValue: null, currentCoords: generateRandomCoords() };
   }
   return state;
 }

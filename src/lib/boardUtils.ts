@@ -25,7 +25,7 @@ export function coordinatesEqual(coordinate1: Coordinate, coordinate2: Coordinat
  * Generates the next set of valid board coordinates.
  * @param lastCoords previous coordinates, which the new coordinates should not equal
  */
-export function generateRandomCoords(lastCoords?: Coordinate): Coordinate {
+export function generateRandomCoords(lastCoords: Coordinate | null = null): Coordinate {
   const nextCoords = { rank: generateNextValue(ranks), file: generateNextValue(files) };
 
   if (!lastCoords) {

@@ -8,10 +8,9 @@ describe('game reducer', () => {
   beforeAll(() => {
     initialState = {
       countdownValue: null,
-      inGameLoop: false,
       coordsPerRound: 8,
       showingTimingResult: false,
-      currentCoords: { file: 'F', rank: 3 }
+      currentCoords: null
     };
     Object.freeze(initialState);
   });

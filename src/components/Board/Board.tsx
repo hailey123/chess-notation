@@ -33,9 +33,9 @@ class Board extends React.PureComponent<Props> {
 
     return (
       <div className="board">
-        <div className="countdown">
-          {countdownValue !== null ? <p>{countdownValue}</p> : null}
-        </div>
+        {countdownValue !== null ? <div className="countdown">
+          <p>{countdownValue}</p>
+        </div> : null}
         <div className="squares">
           {orderedRanks.map((rank, rankIndex) =>
             <div key={rank} className="rank">

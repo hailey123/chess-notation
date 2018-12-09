@@ -14,7 +14,7 @@ export default function game(
     inGameLoop: false,
     coordsPerRound: 8,
     showingTimingResult: false,
-    currentCoords: { file: 'F', rank: 3 }
+    currentCoords: null
   },
   action: Action): GameState {
   switch (action.type) {

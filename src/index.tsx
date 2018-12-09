@@ -12,6 +12,7 @@ import settings from './reducers/settings';
 import { StoreState } from './types';
 import { Action } from './actions';
 
+import './reset.css';
 import './index.css';
 
 const rootReducer = combineReducers({ game, leaderboard, settings });

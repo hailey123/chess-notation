@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { startRound, Action } from 'src/actions';
 import { ThunkDispatch } from 'redux-thunk';
 import { StoreState } from 'src/types';
+import { bindActionCreators } from 'redux';
 
-export function mapDispatchToProps(dispatch: ThunkDispatch<StoreState, null, Action>) {
-  // TODO: there is cleaner syntax for this, what is it?
-  return {
-    startRound: () => dispatch(startRound())
-  };
-}
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<StoreState, null, Action>
+) => bindActionCreators(
+  {
+    startRound,
+  },
+  dispatch,
+);
 
 export default connect(null, mapDispatchToProps)(StartButton);

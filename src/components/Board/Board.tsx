@@ -17,7 +17,7 @@ class Board extends React.PureComponent<Props> {
     const {
       playAsBlack,
       darkSquareColor,
-      lightSquareColor,
+      lightSquareColor
     } = this.props;
     let orderedRanks: Rank[];
     let orderedFiles: File[];
@@ -34,7 +34,7 @@ class Board extends React.PureComponent<Props> {
     return (
       <div className="board">
         <div className="countdown">
-          {countdownValue != null ? <p>{countdownValue}</p> : null}
+          {countdownValue !== null ? <p>{countdownValue}</p> : null}
         </div>
         <div className="squares">
           {orderedRanks.map((rank, rankIndex) =>

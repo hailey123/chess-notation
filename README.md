@@ -1,6 +1,6 @@
 # Chess Notation
 
-A single player game to help you learn chess notation.
+A single player game to help you learn chess notation. The game is in progress and not functional currently.
 
 ## How to Play
 

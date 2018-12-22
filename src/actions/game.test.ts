@@ -9,17 +9,19 @@ describe('game actions', () => {
     expect(actions.showNextCoords()).toEqual(expectedAction);
   });
   it('should create an action to handle target square clicked', () => {
+    const isTarget = true;
     const expectedAction: actions.HandleSquareClicked = {
-      type: constants.HANDLE_SQUARE_CLICKED,
-      isTarget: true
+      isTarget,
+      type: constants.HANDLE_SQUARE_CLICKED
     };
-    expect(actions.handleSquareClicked(true)).toEqual(expectedAction);
+    expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
   });
   it('should create an action to handle non-target square clicked', () => {
+    const isTarget = false;
     const expectedAction: actions.HandleSquareClicked = {
+      isTarget,
       type: constants.HANDLE_SQUARE_CLICKED,
-      isTarget: false
     };
-    expect(actions.handleSquareClicked(false)).toEqual(expectedAction);
+    expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
   });
 });

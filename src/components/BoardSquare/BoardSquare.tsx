@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 
 import { Props } from './props';
 
@@ -14,9 +15,9 @@ class BoardSquare extends React.PureComponent<Props> {
     handleClickAtCoordinate(isTarget);
   }
   render(): JSX.Element {
-    const { color } = this.props;
+    const { color, isTarget } = this.props;
     return <div
-      className="board-square"
+      className={classnames('board-square', isTarget ? 'correct-answer' : 'wrong-answer')}
       style={{
         backgroundColor: color
       }}

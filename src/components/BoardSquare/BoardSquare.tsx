@@ -20,9 +20,6 @@ class BoardSquare extends React.PureComponent<Props> {
         backgroundColor: color
       }}
       onClick={this.handleClick}>{
-        // Uncomment the below line to see the coordinates on the squares
-        // for testing purposes:
-        // this.props.coordinate.file + this.props.coordinate.rank
       }</div>;
   }
 }

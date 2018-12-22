@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { StoreState } from '../../types';
 import { bindActionCreators } from 'redux';
 
-const mapDispatchToProps = (
+export const mapDispatchToProps = (
   dispatch: ThunkDispatch<StoreState, null, Action>
 ) => bindActionCreators(
   {

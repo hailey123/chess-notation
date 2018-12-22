@@ -10,7 +10,8 @@ class BoardSquare extends React.PureComponent<Props> {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(_event: React.MouseEvent<HTMLDivElement>) {
-    this.props.handleClickAtCoordinate();
+    const { handleClickAtCoordinate, isTarget } = this.props;
+    handleClickAtCoordinate(isTarget);
   }
   render(): JSX.Element {
     const { color } = this.props;

@@ -4,9 +4,18 @@ import BoardSquare from './BoardSquare';
 import { Dispatch } from 'react';
 import { Action, handleSquareClicked } from '../../actions';
 import { PropsPassedIn } from './props';
+import { StoreState } from '../../types';
+import { coordinatesEqual } from '../../lib/boardUtils';
 
-function mapDispatchToProps(dispatch: Dispatch<Action>, ownProps: PropsPassedIn) {
-  return { handleClickAtCoordinate: () => { dispatch(handleSquareClicked(ownProps.coordinate)); } };
+export function mapStateToProps({ game }: StoreState, ownProps: PropsPassedIn) {
+  const targetCoords = game.currentCoords;
+  return { isTarget: targetCoords && coordinatesEqual(targetCoords, ownProps.coordinate) };
 }
 
-export default connect(null, mapDispatchToProps)(BoardSquare);
+export function mapDispatchToProps(dispatch: Dispatch<Action>) {
+  return {
+    handleClickAtCoordinate: (isTarget: boolean) => { dispatch(handleSquareClicked(isTarget)); }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoardSquare);

@@ -6,7 +6,7 @@ import {
   SET_COUNTDOWN_VALUE,
   START_PLAY
 } from '../constants/actions';
-import { generateRandomCoords, coordinatesEqual } from '../lib/boardUtils';
+import { generateRandomCoords } from '../lib/boardUtils';
 
 export default function game(
   state: GameState = {
@@ -21,10 +21,8 @@ export default function game(
       const nextCoords = generateRandomCoords(state.currentCoords);
       return { ...state, currentCoords: nextCoords };
     case HANDLE_SQUARE_CLICKED:
-      const clickedSquare = action.square;
-      const currentSquare = state.currentCoords;
-      if (currentSquare && coordinatesEqual(clickedSquare, currentSquare)) {
-        return { ...state, currentCoords: generateRandomCoords() };
+      if (action.isTarget) {
+        return { ...state, currentCoords: generateRandomCoords(state.currentCoords) };
       }
       break;
     case SET_COUNTDOWN_VALUE:

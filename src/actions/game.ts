@@ -1,5 +1,5 @@
 import * as constants from '../constants/actions';
-import { Coordinate, StoreState } from '../types';
+import { StoreState } from '../types';
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';
@@ -10,7 +10,7 @@ export interface ShowNextCoords {
 
 export interface HandleSquareClicked {
   type: constants.HANDLE_SQUARE_CLICKED;
-  square: Coordinate;
+  isTarget: boolean;
 }
 
 export interface StartRound {
@@ -32,10 +32,10 @@ export function showNextCoords(): ShowNextCoords {
   };
 }
 
-export function handleSquareClicked(coordinate: Coordinate): HandleSquareClicked {
+export function handleSquareClicked(isTarget: boolean): HandleSquareClicked {
   return {
-    type: constants.HANDLE_SQUARE_CLICKED,
-    square: coordinate
+    isTarget,
+    type: constants.HANDLE_SQUARE_CLICKED
   };
 }
 

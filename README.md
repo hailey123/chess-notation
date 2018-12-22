@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/hailey123/chess-notation.svg?branch=master)](https://travis-ci.com/hailey123/chess-notation)
+
 # Chess Notation
 
 A single player game to help you learn chess notation. The game is in progress and not functional currently.

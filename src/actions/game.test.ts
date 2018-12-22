@@ -1,6 +1,6 @@
 import * as actions from './game';
 import * as constants from '../constants/actions';
-import { Coordinate } from 'src/types';
+import { Coordinate } from '../types';
 
 describe('game actions', () => {
   it('should create an action to show next coordinates', () => {

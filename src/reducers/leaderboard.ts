@@ -1,5 +1,5 @@
-import { LeaderboardState } from 'src/types';
-import { Action } from 'src/actions';
+import { LeaderboardState } from '../types';
+import { Action } from '../actions';
 
 export default function leaderboard(
   state: LeaderboardState = {},

@@ -1,5 +1,5 @@
 import * as utils from './boardUtils';
-import { Coordinate } from 'src/types';
+import { Coordinate } from '../types';
 import { files, ranks } from '../constants/models';
 
 describe('board utils', () => {

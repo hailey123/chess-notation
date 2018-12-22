@@ -7,7 +7,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import Board from '../Board';
 import NotationInstruction from '../NotationInstruction';
 import StartButton from '../StartButton';
-import theme from 'src/theme';
+import theme from '../../theme';
 
 import './App.css';
 

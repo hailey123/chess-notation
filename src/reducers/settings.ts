@@ -1,5 +1,5 @@
-import { SettingsState } from 'src/types';
-import { Action } from 'src/actions';
+import { SettingsState } from '../types';
+import { Action } from '../actions';
 
 export default function settings(
   state: SettingsState = {

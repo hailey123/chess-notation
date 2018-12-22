@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Rank, File } from 'src/types';
+import { Rank, File } from '../../types';
 import { ranks, files } from '../../constants/models';
 import { Props } from './props';
 import BoardSquare from '../BoardSquare';

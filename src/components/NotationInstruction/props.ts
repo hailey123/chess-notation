@@ -1,4 +1,4 @@
-import { Coordinate } from 'src/types';
+import { Coordinate } from '../../types';
 
 type PropsFromState = {
   currentCoords?: Coordinate

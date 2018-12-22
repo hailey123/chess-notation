@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import NotationInstruction from './NotationInstruction';
-import { StoreState } from 'src/types';
+import { StoreState } from '../../types';
 
 export function mapStateToProps({ game }: StoreState) {
   return { currentCoords: game.currentCoords };

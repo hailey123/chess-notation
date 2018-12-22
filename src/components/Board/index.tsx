@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Board from './Board';
-import { StoreState } from 'src/types';
+import { StoreState } from '../../types';
 
 export function mapStateToProps({ settings, game }: StoreState) {
   const {

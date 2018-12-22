@@ -1,8 +1,8 @@
 import StartButton from './StartButton';
 import { connect } from 'react-redux';
-import { startRound, Action } from 'src/actions';
+import { startRound, Action } from '../../actions';
 import { ThunkDispatch } from 'redux-thunk';
-import { StoreState } from 'src/types';
+import { StoreState } from '../../types';
 import { bindActionCreators } from 'redux';
 
 const mapDispatchToProps = (

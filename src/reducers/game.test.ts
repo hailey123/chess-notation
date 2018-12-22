@@ -1,6 +1,6 @@
 import game from './game';
 import { SHOW_NEXT_COORDS } from '../constants/actions';
-import { GameState, Coordinate } from 'src/types';
+import { GameState, Coordinate } from '../types';
 import * as util from '../lib/boardUtils';
 
 describe('game reducer', () => {

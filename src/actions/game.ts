@@ -1,5 +1,5 @@
 import * as constants from '../constants/actions';
-import { Coordinate, StoreState } from 'src/types';
+import { Coordinate, StoreState } from '../types';
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';

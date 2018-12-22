@@ -4,5 +4,7 @@
   "tslint.autoFixOnSave": true,
   "eslint.autoFixOnSave": true,
   "editor.formatOnSave": true,
-  "markdown.extension.preview.autoShowPreviewToSide": true
+  "markdown.extension.preview.autoShowPreviewToSide": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.quoteStyle": "single"
 }

@@ -1,6 +1,5 @@
 import * as actions from './game';
 import * as constants from '../constants/actions';
-import { Coordinate } from '../types';
 
 describe('game actions', () => {
   it('should create an action to show next coordinates', () => {
@@ -9,16 +8,20 @@ describe('game actions', () => {
     };
     expect(actions.showNextCoords()).toEqual(expectedAction);
   });
-  it('should create an action to handle square clicked', () => {
-    const coordinate: Coordinate = {
-      file: 'A',
-      rank: 4
-    };
-    Object.freeze(coordinate);
+  it('should create an action to handle target square clicked', () => {
+    const isTarget = true;
     const expectedAction: actions.HandleSquareClicked = {
-      type: constants.HANDLE_SQUARE_CLICKED,
-      square: coordinate
+      isTarget,
+      type: constants.HANDLE_SQUARE_CLICKED
     };
-    expect(actions.handleSquareClicked(coordinate)).toEqual(expectedAction);
+    expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
+  });
+  it('should create an action to handle non-target square clicked', () => {
+    const isTarget = false;
+    const expectedAction: actions.HandleSquareClicked = {
+      isTarget,
+      type: constants.HANDLE_SQUARE_CLICKED,
+    };
+    expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
   });
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 
 import { Props } from './props';
 
@@ -10,19 +11,17 @@ class BoardSquare extends React.PureComponent<Props> {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(_event: React.MouseEvent<HTMLDivElement>) {
-    this.props.handleClickAtCoordinate();
+    const { handleClickAtCoordinate, isTarget } = this.props;
+    handleClickAtCoordinate(isTarget);
   }
   render(): JSX.Element {
-    const { color } = this.props;
+    const { color, isTarget } = this.props;
     return <div
-      className="board-square"
+      className={classnames('board-square', isTarget ? 'correct-answer' : 'wrong-answer')}
       style={{
         backgroundColor: color
       }}
       onClick={this.handleClick}>{
-        // Uncomment the below line to see the coordinates on the squares
-        // for testing purposes:
-        // this.props.coordinate.file + this.props.coordinate.rank
       }</div>;
   }
 }

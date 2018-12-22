@@ -21,9 +21,10 @@ export default function game(
       const nextCoords = generateRandomCoords(state.currentCoords);
       return { ...state, currentCoords: nextCoords };
     case HANDLE_SQUARE_CLICKED:
-      // TODO: Fix, as this is not the desired behavior. Currently just updating the
-      // coordinate in the instruction so we can see something's happening.
-      return { ...state, currentCoords: action.square };
+      if (action.isTarget) {
+        return { ...state, currentCoords: generateRandomCoords(state.currentCoords) };
+      }
+      break;
     case SET_COUNTDOWN_VALUE:
       return {
         ...state,

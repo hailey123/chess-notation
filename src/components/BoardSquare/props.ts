@@ -2,11 +2,15 @@ import { Coordinate } from '../../types';
 
 export type PropsPassedIn = {
   coordinate: Coordinate,
-  color: string,
+  color: string
+};
+
+export type PropsFromState = {
+  isTarget: boolean
 };
 
 type PropsFromDispatch = {
-  handleClickAtCoordinate: () => void
+  handleClickAtCoordinate: (isTarget: boolean) => void
 };
 
-export type Props = PropsPassedIn & PropsFromDispatch;
+export type Props = PropsPassedIn & PropsFromState & PropsFromDispatch;

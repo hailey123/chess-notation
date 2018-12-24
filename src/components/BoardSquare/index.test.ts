@@ -9,8 +9,6 @@ describe('mapStateToProps', () => {
   beforeAll(() => {
     baseGameState = {
       countdownValue: null,
-      coordsPerRound: 8,
-      showingTimingResult: false,
       currentCoords: null,
       timeLeftInRound: RoundLengthSeconds
     };

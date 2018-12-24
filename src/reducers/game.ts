@@ -14,8 +14,6 @@ import { RoundLengthSeconds } from '../constants/models';
 export default function game(
   state: GameState = {
     countdownValue: null,
-    coordsPerRound: 8,
-    showingTimingResult: false,
     currentCoords: null,
     timeLeftInRound: RoundLengthSeconds
   },

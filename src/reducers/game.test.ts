@@ -9,8 +9,6 @@ describe('game reducer', () => {
   beforeAll(() => {
     initialState = {
       countdownValue: null,
-      coordsPerRound: 8,
-      showingTimingResult: false,
       currentCoords: null,
       timeLeftInRound: RoundLengthSeconds
     };

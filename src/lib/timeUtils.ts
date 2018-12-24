@@ -1,5 +1,13 @@
 import { ClockTime } from '../types';
 
+export function clockTimeToString(clockTime: ClockTime) {
+  const { seconds, minutes } = clockTime;
+  if (seconds > 9) {
+    return `${minutes}:${seconds}`;
+  }
+  return `${minutes}:0${seconds}`;
+}
+
 export function clockTimeFromSeconds(seconds: number): ClockTime {
   const minutes = minutesFromSeconds(seconds);
   const secondsOnly = secondsUnder60(seconds, minutes);

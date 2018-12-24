@@ -9,7 +9,7 @@ class Countdown extends React.PureComponent<Props> {
   render(): JSX.Element {
     const { secondsRemaining } = this.props;
     let displayTime: string | null = null;
-    if (secondsRemaining >= 0) {
+    if (secondsRemaining !== null) {
       const clockTime = clockTimeFromSeconds(secondsRemaining);
       displayTime = clockTimeToString(clockTime);
     }

@@ -12,3 +12,9 @@ export type SET_COUNTDOWN_VALUE = typeof SET_COUNTDOWN_VALUE;
 
 export const START_PLAY = 'START_PLAY';
 export type START_PLAY = typeof START_PLAY;
+
+export const SET_ROUND_TIMER_VALUE = 'SET_ROUND_TIMER_VALUE';
+export type SET_ROUND_TIMER_VALUE = typeof SET_ROUND_TIMER_VALUE;
+
+export const END_ROUND = 'END_ROUND';
+export type END_ROUND = typeof END_ROUND;

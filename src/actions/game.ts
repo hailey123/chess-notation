@@ -26,6 +26,15 @@ export interface StartPlay {
   type: constants.START_PLAY;
 }
 
+export interface SetRoundTimerValue {
+  type: constants.SET_ROUND_TIMER_VALUE;
+  value: number;
+}
+
+export interface EndRound {
+  type: constants.END_ROUND;
+}
+
 export function showNextCoords(): ShowNextCoords {
   return {
     type: constants.SHOW_NEXT_COORDS
@@ -52,23 +61,54 @@ export function startPlay(): StartPlay {
   };
 }
 
-export function startRound(): ThunkAction<Promise<void>, StoreState, null, Action> {
-  return (dispatch: Dispatch) => {
-    let countdownValue = 3;
-    dispatch(setCountdownValue(countdownValue));
-    return new Promise((resolve) => {
-      const msPerCount = 1000;
+export function setRoundTimerValue(value: number): SetRoundTimerValue {
+  return {
+    value,
+    type: constants.SET_ROUND_TIMER_VALUE
+  };
+}
 
-      const interval = setInterval(() => {
-        countdownValue -= 1;
-        if (countdownValue > 0) {
-          dispatch(setCountdownValue(countdownValue));
+export function endRound(): EndRound {
+  return {
+    type: constants.END_ROUND
+  };
+}
+
+export function startRound(): ThunkAction<Promise<void>, StoreState, null, Action> {
+  return (dispatch: Dispatch, getState: () => StoreState) => {
+    let roundStartCountdownValue = 3;
+    dispatch(setCountdownValue(roundStartCountdownValue));
+    return new Promise((resolve, reject) => {
+      const msPerRoundStartCountdownCount = 1000;
+
+      const countdownClockInterval = setInterval(() => {
+        roundStartCountdownValue -= 1;
+        if (roundStartCountdownValue > 0) {
+          dispatch(setCountdownValue(roundStartCountdownValue));
         } else {
+          clearInterval(countdownClockInterval);
           dispatch(startPlay());
-          clearInterval(interval);
-          resolve();
+
+          const timeLeftInRound = getState().game.timeLeftInRound;
+          if (timeLeftInRound === null) {
+            return reject('Round countdown time was unexpectedly null');
+          }
+
+          let timeLeftInRoundNonNull: number = <number>timeLeftInRound;
+          const msPerRoundClockCount = 1000;
+
+          const roundClockInterval = setInterval(() => {
+            timeLeftInRoundNonNull -= 1;
+            if (timeLeftInRoundNonNull >= 0) {
+              dispatch(setRoundTimerValue(timeLeftInRoundNonNull));
+            } else {
+              dispatch(endRound());
+              clearInterval(roundClockInterval);
+              resolve();
+            }
+          },                                     msPerRoundClockCount);
         }
-      },                           msPerCount);
+      },                                         msPerRoundStartCountdownCount);
     });
   };
 }

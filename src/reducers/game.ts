@@ -4,7 +4,9 @@ import {
   SHOW_NEXT_COORDS,
   HANDLE_SQUARE_CLICKED,
   SET_COUNTDOWN_VALUE,
-  START_PLAY
+  START_PLAY,
+  END_ROUND,
+  SET_ROUND_TIMER_VALUE
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
 
@@ -13,7 +15,8 @@ export default function game(
     countdownValue: null,
     coordsPerRound: 8,
     showingTimingResult: false,
-    currentCoords: null
+    currentCoords: null,
+    timeLeftInRound: null
   },
   action: Action): GameState {
   switch (action.type) {
@@ -35,7 +38,18 @@ export default function game(
       return {
         ...state,
         countdownValue: null,
-        currentCoords: generateRandomCoords()
+        currentCoords: generateRandomCoords(),
+        timeLeftInRound: 5 // TODO: extract constant, make an app setting
+      };
+    case SET_ROUND_TIMER_VALUE:
+      return {
+        ...state,
+        timeLeftInRound: action.value
+      };
+    case END_ROUND:
+      return {
+        ...state,
+        timeLeftInRound: null
       };
   }
   return state;

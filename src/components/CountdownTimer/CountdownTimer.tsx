@@ -6,8 +6,13 @@ import './CountdownTimer.css';
 
 class Countdown extends React.PureComponent<Props> {
   render(): JSX.Element {
+    const { secondsRemaining } = this.props;
+    console.log(secondsRemaining);
+
     return <div className="countdown-timer">
-      <p>1:00</p>
+      {secondsRemaining >= 0
+        ? <p>1:00</p>
+        : null}
     </div>;
   }
 }

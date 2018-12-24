@@ -10,7 +10,8 @@ describe('mapStateToProps', () => {
     baseGameState = {
       countdownValue: null,
       currentCoords: null,
-      timeLeftInRound: RoundLengthSeconds
+      timeLeftInRound: RoundLengthSeconds,
+      roundInProgress: false
     };
     basePropsPassedIn = {
       coordinate: {

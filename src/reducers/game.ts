@@ -15,7 +15,8 @@ export default function game(
   state: GameState = {
     countdownValue: null,
     currentCoords: null,
-    timeLeftInRound: RoundLengthSeconds
+    timeLeftInRound: RoundLengthSeconds,
+    roundInProgress: false
   },
   action: Action): GameState {
   switch (action.type) {
@@ -36,6 +37,7 @@ export default function game(
     case START_PLAY:
       return {
         ...state,
+        roundInProgress: true,
         countdownValue: null,
         currentCoords: generateRandomCoords()
       };
@@ -45,8 +47,11 @@ export default function game(
         timeLeftInRound: action.value
       };
     case END_ROUND:
-      // TODO: more to do here?
-      return state;
+      return {
+        ...state,
+        roundInProgress: false,
+        timeLeftInRound: 0
+      };
   }
   return state;
 }

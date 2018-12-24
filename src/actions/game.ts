@@ -114,11 +114,11 @@ function setRoundTimerInterval(
 
   const roundTimerInterval = setInterval(() => {
     timeLeftInRound -= 1;
-    if (timeLeftInRound >= 0) {
+    if (timeLeftInRound > 0) {
       dispatch(setRoundTimerValue(timeLeftInRound));
     } else {
-      dispatch(endRound());
       clearInterval(roundTimerInterval);
+      dispatch(endRound());
       resolve();
     }
   },                                     msPerRoundClockCount);

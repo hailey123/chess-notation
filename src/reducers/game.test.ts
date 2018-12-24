@@ -10,7 +10,8 @@ describe('game reducer', () => {
     initialState = {
       countdownValue: null,
       currentCoords: null,
-      timeLeftInRound: RoundLengthSeconds
+      timeLeftInRound: RoundLengthSeconds,
+      roundInProgress: false
     };
     Object.freeze(initialState);
   });

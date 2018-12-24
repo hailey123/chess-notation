@@ -3,9 +3,9 @@ import * as React from 'react';
 import { Props } from './props';
 import { clockTimeFromSeconds, clockTimeToString } from '../../lib/timeUtils';
 
-import './CountdownTimer.css';
+import './RoundCountdown.css';
 
-class Countdown extends React.PureComponent<Props> {
+class RoundCountdown extends React.PureComponent<Props> {
   render(): JSX.Element {
     const { secondsRemaining } = this.props;
     let displayTime: string | null = null;
@@ -19,4 +19,4 @@ class Countdown extends React.PureComponent<Props> {
   }
 }
 
-export default Countdown;
+export default RoundCountdown;

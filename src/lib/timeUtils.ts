@@ -1,4 +1,6 @@
-export function clockTimeFromSeconds(seconds: number) {
+import { ClockTime } from '../types';
+
+export function clockTimeFromSeconds(seconds: number): ClockTime {
   const minutes = minutesFromSeconds(seconds);
   const secondsOnly = secondsUnder60(seconds, minutes);
   return {

@@ -1,18 +1,28 @@
 import * as React from 'react';
 
 import { Props } from './props';
+import { clockTimeFromSeconds } from '../../lib/timeUtils';
+import { ClockTime } from '../../types';
 
 import './CountdownTimer.css';
 
 class Countdown extends React.PureComponent<Props> {
+  clockTimeToString(clockTime: ClockTime) {
+    const { seconds, minutes } = clockTime;
+    if (seconds > 9) {
+      return `${minutes}:${seconds}`;
+    }
+    return `${minutes}:0${seconds}`;
+  }
   render(): JSX.Element {
     const { secondsRemaining } = this.props;
-    console.log(secondsRemaining);
-
+    let displayTime: string | null = null;
+    if (secondsRemaining >= 0) {
+      const clockTime = clockTimeFromSeconds(secondsRemaining);
+      displayTime = this.clockTimeToString(clockTime);
+    }
     return <div className="countdown-timer">
-      {secondsRemaining >= 0
-        ? <p>1:00</p>
-        : null}
+      {displayTime ? <p>{displayTime}</p> : null}
     </div>;
   }
 }

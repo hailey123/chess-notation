@@ -1,19 +1,27 @@
-import { secondsUnder60, minutesFromSeconds } from './timeUtils';
+import { clockTimeFromSeconds, minutesFromSeconds, secondsUnder60 } from './timeUtils';
+import { ClockTime } from '../types';
 
 describe('time utils', () => {
-  describe('minutesFromSeconds', () => {
-    test('returns the correct value when total seconds >= 60', () => {
-      const totalSeconds = 70;
-      const minutesInSeconds = 1;
-      expect(minutesFromSeconds(totalSeconds)).toBe(minutesInSeconds);
-    });
+  test('returns the correct value when total seconds >= 60', () => {
+    const totalSeconds = 70;
+    const expectedClockTime: ClockTime = {
+      minutes: 1,
+      seconds: 10
+    };
+
+    expect(clockTimeFromSeconds(totalSeconds)).toEqual(expectedClockTime);
   });
-  describe('secondsUnder60', () => {
-    test('returns the correct value when total seconds >= 60', () => {
-      const totalSeconds = 70;
-      const minutesInSeconds = 1;
-      const secondsWithoutMinutes = 10;
-      expect(secondsUnder60(totalSeconds, minutesInSeconds)).toBe(secondsWithoutMinutes);
-    });
+  test('returns the correct value when total seconds >= 60', () => {
+    const totalSeconds = 70;
+    const expectedMinutesInSeconds = 1;
+
+    expect(minutesFromSeconds(totalSeconds)).toBe(expectedMinutesInSeconds);
+  });
+  test('returns the correct value when total seconds >= 60', () => {
+    const totalSeconds = 70;
+    const minutesInSeconds = 1;
+    const expectedSecondsWithoutMinutes = 10;
+
+    expect(secondsUnder60(totalSeconds, minutesInSeconds)).toBe(expectedSecondsWithoutMinutes);
   });
 });

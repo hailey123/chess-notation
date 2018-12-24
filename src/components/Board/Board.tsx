@@ -33,7 +33,7 @@ class Board extends React.PureComponent<Props> {
 
     return (
       <div className="board">
-        {countdownValue !== null ? <div className="countdown">
+        {countdownValue !== null ? <div className="start-countdown">
           <p>{countdownValue}</p>
         </div> : null}
         <div className="squares">

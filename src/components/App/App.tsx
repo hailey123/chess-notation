@@ -7,7 +7,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import Board from '../Board';
 import NotationInstruction from '../NotationInstruction';
 import StartButton from '../StartButton';
-import Countdown from '../Countdown';
+import CountdownTimer from '../CountdownTimer';
 import theme from '../../theme';
 
 import './App.css';
@@ -32,7 +32,7 @@ class App extends React.Component {
             </div>
             <div className="panel-after">
               <StartButton />
-              <Countdown />
+              <CountdownTimer />
             </div>
           </main>
         </div>

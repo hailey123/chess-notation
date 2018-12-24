@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Rank, File } from '../../types';
-import { ranks, files } from '../../constants/models';
+import { Ranks, Files } from '../../constants/models';
 import { Props } from './props';
 import BoardSquare from '../BoardSquare';
 
@@ -23,11 +23,11 @@ class Board extends React.PureComponent<Props> {
     let orderedFiles: File[];
 
     if (playAsBlack) {
-      orderedRanks = ranks;
-      orderedFiles = files.reverse();
+      orderedRanks = Ranks;
+      orderedFiles = Files.reverse();
     } else {
-      orderedRanks = ranks.reverse();
-      orderedFiles = files;
+      orderedRanks = Ranks.reverse();
+      orderedFiles = Files;
     }
     const { countdownValue } = this.props;
 

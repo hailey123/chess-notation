@@ -1,5 +1,5 @@
 import { Coordinate } from '../types';
-import { ranks, files } from '../constants/models';
+import { Ranks, Files } from '../constants/models';
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
@@ -26,15 +26,15 @@ export function coordinatesEqual(coordinate1: Coordinate, coordinate2: Coordinat
  * @param lastCoords previous coordinates, which the new coordinates should not equal
  */
 export function generateRandomCoords(lastCoords: Coordinate | null = null): Coordinate {
-  const nextCoords = { rank: generateNextValue(ranks), file: generateNextValue(files) };
+  const nextCoords = { rank: generateNextValue(Ranks), file: generateNextValue(Files) };
 
   if (!lastCoords) {
     return nextCoords;
   }
 
   while (coordinatesEqual(nextCoords, lastCoords)) {
-    nextCoords.rank = generateNextValue(ranks);
-    nextCoords.file = generateNextValue(files);
+    nextCoords.rank = generateNextValue(Ranks);
+    nextCoords.file = generateNextValue(Files);
   }
 
   return nextCoords;

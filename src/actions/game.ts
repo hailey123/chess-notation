@@ -1,6 +1,6 @@
 import * as constants from '../constants/actions';
 import { StoreState } from '../types';
-import { Dispatch } from 'redux';
+import { Dispatch, AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';
 
@@ -76,39 +76,50 @@ export function endRound(): EndRound {
 
 export function startRound(): ThunkAction<Promise<void>, StoreState, null, Action> {
   return (dispatch: Dispatch, getState: () => StoreState) => {
-    let roundStartCountdownValue = 3;
-    dispatch(setCountdownValue(roundStartCountdownValue));
-    return new Promise((resolve, reject) => {
-      const msPerRoundStartCountdownCount = 1000;
-
-      const countdownClockInterval = setInterval(() => {
-        roundStartCountdownValue -= 1;
-        if (roundStartCountdownValue > 0) {
-          dispatch(setCountdownValue(roundStartCountdownValue));
-        } else {
-          clearInterval(countdownClockInterval);
-          dispatch(startPlay());
-
-          const timeLeftInRound = getState().game.timeLeftInRound;
-          if (timeLeftInRound === null) {
-            return reject('Round countdown time was unexpectedly null');
-          }
-
-          let timeLeftInRoundNonNull: number = <number>timeLeftInRound;
-          const msPerRoundClockCount = 1000;
-
-          const roundClockInterval = setInterval(() => {
-            timeLeftInRoundNonNull -= 1;
-            if (timeLeftInRoundNonNull >= 0) {
-              dispatch(setRoundTimerValue(timeLeftInRoundNonNull));
-            } else {
-              dispatch(endRound());
-              clearInterval(roundClockInterval);
-              resolve();
-            }
-          },                                     msPerRoundClockCount);
-        }
-      },                                         msPerRoundStartCountdownCount);
+    return new Promise((resolve) => {
+      setRoundStartCountdownInterval(dispatch, getState, resolve);
     });
   };
+}
+
+function setRoundStartCountdownInterval(
+  dispatch: Dispatch<AnyAction>,
+  getState: () => StoreState,
+  resolve: (value?: void | PromiseLike<void> | undefined) => void
+) {
+  let roundStartCountdownValue = 3;
+  dispatch(setCountdownValue(roundStartCountdownValue));
+  dispatch(setRoundTimerValue(5));
+  const msPerRoundStartCountdownCount = 1000;
+
+  const roundStartCountdownClockInterval = setInterval(() => {
+    roundStartCountdownValue -= 1;
+    if (roundStartCountdownValue > 0) {
+      dispatch(setCountdownValue(roundStartCountdownValue));
+    } else {
+      clearInterval(roundStartCountdownClockInterval);
+      dispatch(startPlay());
+      setRoundTimerInterval(dispatch, getState, resolve);
+    }
+  },                                                   msPerRoundStartCountdownCount);
+}
+
+function setRoundTimerInterval(
+  dispatch: Dispatch<AnyAction>,
+  getState: () => StoreState,
+  resolve: (value?: void | PromiseLike<void> | undefined) => void
+) {
+  let timeLeftInRound = getState().game.timeLeftInRound;
+  const msPerRoundClockCount = 1000;
+
+  const roundTimerInterval = setInterval(() => {
+    timeLeftInRound -= 1;
+    if (timeLeftInRound >= 0) {
+      dispatch(setRoundTimerValue(timeLeftInRound));
+    } else {
+      dispatch(endRound());
+      clearInterval(roundTimerInterval);
+      resolve();
+    }
+  },                                     msPerRoundClockCount);
 }

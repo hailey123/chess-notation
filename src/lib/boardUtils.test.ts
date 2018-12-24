@@ -1,6 +1,6 @@
 import * as utils from './boardUtils';
 import { Coordinate } from '../types';
-import { files, ranks } from '../constants/models';
+import { Files, Ranks } from '../constants/models';
 
 describe('board utils', () => {
   const maxMathRandom = 1 - 1e-16;
@@ -66,8 +66,8 @@ describe('board utils', () => {
       })).toBeTruthy();
     });
     it('recognizes unequal files', () => {
-      const fileIndex = (files.indexOf(coordinates.file) + 1) % files.length;
-      const file = files[fileIndex];
+      const fileIndex = (Files.indexOf(coordinates.file) + 1) % Files.length;
+      const file = Files[fileIndex];
 
       expect(utils.coordinatesEqual(coordinates, {
         file,
@@ -75,8 +75,8 @@ describe('board utils', () => {
       })).toBeFalsy();
     });
     it('recognizes unequal ranks', () => {
-      const rankIndex = (ranks.indexOf(coordinates.rank) + 1) % ranks.length;
-      const rank = ranks[rankIndex];
+      const rankIndex = (Ranks.indexOf(coordinates.rank) + 1) % Ranks.length;
+      const rank = Ranks[rankIndex];
 
       expect(utils.coordinatesEqual(coordinates, {
         rank,
@@ -97,8 +97,8 @@ describe('board utils', () => {
     it('works when random generation initially gives values the same as the previous', () => {
       const initialRankOrFileIndex = 0;
       const lastCoords: Coordinate = {
-        file: files[initialRankOrFileIndex],
-        rank: ranks[initialRankOrFileIndex]
+        file: Files[initialRankOrFileIndex],
+        rank: Ranks[initialRankOrFileIndex]
       };
       let mockCallCount = 0;
       const mockFor = 2;

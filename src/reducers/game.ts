@@ -9,6 +9,7 @@ import {
   SET_ROUND_TIMER_VALUE
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
+import { RoundLengthSeconds } from '../constants/models';
 
 export default function game(
   state: GameState = {
@@ -16,7 +17,7 @@ export default function game(
     coordsPerRound: 8,
     showingTimingResult: false,
     currentCoords: null,
-    timeLeftInRound: null
+    timeLeftInRound: RoundLengthSeconds
   },
   action: Action): GameState {
   switch (action.type) {
@@ -38,8 +39,7 @@ export default function game(
       return {
         ...state,
         countdownValue: null,
-        currentCoords: generateRandomCoords(),
-        timeLeftInRound: 5 // TODO: extract constant, make an app setting
+        currentCoords: generateRandomCoords()
       };
     case SET_ROUND_TIMER_VALUE:
       return {
@@ -47,10 +47,8 @@ export default function game(
         timeLeftInRound: action.value
       };
     case END_ROUND:
-      return {
-        ...state,
-        timeLeftInRound: null
-      };
+      // TODO: more to do here?
+      return state;
   }
   return state;
 }

@@ -2,6 +2,7 @@ import game from './game';
 import { SHOW_NEXT_COORDS } from '../constants/actions';
 import { GameState, Coordinate } from '../types';
 import * as util from '../lib/boardUtils';
+import { RoundLengthSeconds } from '../constants/models';
 
 describe('game reducer', () => {
   let initialState: GameState;
@@ -11,7 +12,7 @@ describe('game reducer', () => {
       coordsPerRound: 8,
       showingTimingResult: false,
       currentCoords: null,
-      timeLeftInRound: null
+      timeLeftInRound: RoundLengthSeconds
     };
     Object.freeze(initialState);
   });

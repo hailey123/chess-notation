@@ -6,11 +6,16 @@ export type Coordinate = {
   file: File
 };
 
+export type ClockTime = {
+  minutes: number,
+  seconds: number
+};
+
 export interface GameState {
   countdownValue: number | null;
-  coordsPerRound: number; // Number of coordinates displayed per round
-  showingTimingResult: boolean; // Showing results of a round
   currentCoords: Coordinate | null; // Coords currently show & awaiting click on board
+  timeLeftInRound: number;
+  roundInProgress: boolean;
 }
 
 export interface LeaderboardState { }

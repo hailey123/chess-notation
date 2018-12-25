@@ -1,6 +1,7 @@
 import { StoreState, GameState } from '../../types';
 import { mapStateToProps } from '.';
 import { PropsPassedIn } from './props';
+import { RoundLengthSeconds } from '../../constants/models';
 
 describe('mapStateToProps', () => {
   let baseGameState: GameState;
@@ -8,9 +9,9 @@ describe('mapStateToProps', () => {
   beforeAll(() => {
     baseGameState = {
       countdownValue: null,
-      coordsPerRound: 8,
-      showingTimingResult: false,
-      currentCoords: null
+      currentCoords: null,
+      timeLeftInRound: RoundLengthSeconds,
+      roundInProgress: false
     };
     basePropsPassedIn = {
       coordinate: {

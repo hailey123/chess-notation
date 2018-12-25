@@ -11,18 +11,26 @@ class BoardSquare extends React.PureComponent<Props> {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(_event: React.MouseEvent<HTMLDivElement>) {
+    if (!this.props.roundInProgress) {
+      return;
+    }
     const { handleClickAtCoordinate, isTarget } = this.props;
     handleClickAtCoordinate(isTarget);
   }
   render(): JSX.Element {
-    const { color, isTarget } = this.props;
+    const { color, isTarget, roundInProgress } = this.props;
+    let classNames = '';
+    if (roundInProgress) {
+      classNames = classnames('enabled', isTarget ? 'correct-answer' : 'wrong-answer');
+    }
     return <div
-      className={classnames('board-square', isTarget ? 'correct-answer' : 'wrong-answer')}
+      className={classnames('board-square', classNames)}
       style={{
         backgroundColor: color
       }}
       onClick={this.handleClick}>{
-      }</div>;
+      }
+    </div>;
   }
 }
 

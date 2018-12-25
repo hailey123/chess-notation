@@ -3,13 +3,17 @@ import {
   HandleSquareClicked,
   StartRound,
   SetCountdownValue,
-  StartPlay
+  StartPlay,
+  SetRoundTimerValue,
+  EndRound
 } from './game';
 
 export type Action = ShowNextCoords
   | HandleSquareClicked
   | StartRound
   | SetCountdownValue
-  | StartPlay;
+  | StartPlay
+  | SetRoundTimerValue
+  | EndRound;
 
 export * from './game';

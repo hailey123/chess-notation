@@ -5,8 +5,9 @@ export type PropsPassedIn = {
   color: string
 };
 
-export type PropsFromState = {
-  isTarget: boolean
+type PropsFromState = {
+  isTarget: boolean,
+  roundInProgress: boolean
 };
 
 type PropsFromDispatch = {

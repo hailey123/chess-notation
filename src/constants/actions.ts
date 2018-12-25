@@ -18,3 +18,6 @@ export type SET_ROUND_TIMER_VALUE = typeof SET_ROUND_TIMER_VALUE;
 
 export const END_ROUND = 'END_ROUND';
 export type END_ROUND = typeof END_ROUND;
+
+export const RESET_COUNT = 'RESET_COUNT';
+export type RESET_COUNT = typeof RESET_COUNT;

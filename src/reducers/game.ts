@@ -6,7 +6,8 @@ import {
   SET_COUNTDOWN_VALUE,
   START_PLAY,
   END_ROUND,
-  SET_ROUND_TIMER_VALUE
+  SET_ROUND_TIMER_VALUE,
+  RESET_COUNT
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
 import { RoundLengthSeconds } from '../constants/models';
@@ -26,7 +27,11 @@ export default function game(
       return { ...state, currentCoords: nextCoords };
     case HANDLE_SQUARE_CLICKED:
       if (action.isTarget) {
-        return { ...state, currentCoords: generateRandomCoords(state.currentCoords) };
+        return {
+          ...state,
+          currentCoords: generateRandomCoords(state.currentCoords),
+          count: state.count + 1
+        };
       }
       break;
     case SET_COUNTDOWN_VALUE:
@@ -52,6 +57,11 @@ export default function game(
         ...state,
         roundInProgress: false,
         timeLeftInRound: 0
+      };
+    case RESET_COUNT:
+      return {
+        ...state,
+        count: 0
       };
   }
   return state;

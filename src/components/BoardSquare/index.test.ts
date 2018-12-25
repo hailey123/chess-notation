@@ -1,18 +1,11 @@
-import { StoreState, GameState } from '../../types';
+import { StoreState } from '../../types';
 import { mapStateToProps } from '.';
 import { PropsPassedIn } from './props';
-import { RoundLengthSeconds } from '../../constants/models';
+import { BaseGameState } from '../../constants/models';
 
 describe('mapStateToProps', () => {
-  let baseGameState: GameState;
   let basePropsPassedIn: PropsPassedIn;
   beforeAll(() => {
-    baseGameState = {
-      countdownValue: null,
-      currentCoords: null,
-      timeLeftInRound: RoundLengthSeconds,
-      roundInProgress: false
-    };
     basePropsPassedIn = {
       coordinate: {
         rank: 7,
@@ -20,12 +13,11 @@ describe('mapStateToProps', () => {
       },
       color: 'white'
     };
-    Object.freeze(baseGameState);
     Object.freeze(basePropsPassedIn);
   });
   it('returns false when there is no current coordinate', () => {
     const state: StoreState = {
-      game: baseGameState,
+      game: BaseGameState,
       leaderboard: {},
       settings: {}
     };
@@ -34,7 +26,7 @@ describe('mapStateToProps', () => {
   it('sets isTarget to false when the square\'s coordinate differs from the target', () => {
     const state: StoreState = {
       game: {
-        ...baseGameState,
+        ...BaseGameState,
         currentCoords: {
           rank: 3,
           file: 'A'
@@ -48,7 +40,7 @@ describe('mapStateToProps', () => {
   it('sets isTarget to true when the square\'s coordinate is the target', () => {
     const state: StoreState = {
       game: {
-        ...baseGameState,
+        ...BaseGameState,
         currentCoords: basePropsPassedIn.coordinate
       },
       leaderboard: {},

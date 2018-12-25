@@ -8,6 +8,7 @@ import Board from '../Board';
 import NotationInstruction from '../NotationInstruction';
 import StartButton from '../StartButton';
 import RoundCountdown from '../RoundCountdown';
+import Counter from '../Counter';
 import theme from '../../theme';
 
 import './App.css';
@@ -33,6 +34,7 @@ class App extends React.Component {
             <div className="panel-after">
               <StartButton />
               <RoundCountdown />
+              <Counter />
             </div>
           </main>
         </div>

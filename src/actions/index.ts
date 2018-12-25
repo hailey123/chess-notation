@@ -5,7 +5,8 @@ import {
   SetCountdownValue,
   StartPlay,
   SetRoundTimerValue,
-  EndRound
+  EndRound,
+  ResetCount
 } from './game';
 
 export type Action = ShowNextCoords
@@ -14,6 +15,7 @@ export type Action = ShowNextCoords
   | SetCountdownValue
   | StartPlay
   | SetRoundTimerValue
-  | EndRound;
+  | EndRound
+  | ResetCount;
 
 export * from './game';

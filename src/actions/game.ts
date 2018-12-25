@@ -36,6 +36,10 @@ export interface EndRound {
   type: constants.END_ROUND;
 }
 
+export interface ResetCount {
+  type: constants.RESET_COUNT;
+}
+
 export function showNextCoords(): ShowNextCoords {
   return {
     type: constants.SHOW_NEXT_COORDS
@@ -75,8 +79,15 @@ export function endRound(): EndRound {
   };
 }
 
+export function resetCount(): ResetCount {
+  return {
+    type: constants.RESET_COUNT
+  };
+}
+
 export function startRound(): ThunkAction<Promise<void>, StoreState, null, Action> {
   return (dispatch: Dispatch, getState: () => StoreState) => {
+    dispatch(resetCount());
     return new Promise((resolve) => {
       setRoundStartCountdownInterval(dispatch, getState, resolve);
     });

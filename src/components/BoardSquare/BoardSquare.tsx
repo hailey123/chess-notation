@@ -29,7 +29,8 @@ class BoardSquare extends React.PureComponent<Props> {
         backgroundColor: color
       }}
       onClick={this.handleClick}>{
-      }</div>;
+      }
+    </div>;
   }
 }
 

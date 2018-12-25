@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Counter from './Counter';
 
 describe('Counter', () => {
-  it('has the correct className', () => {
+  it('has the correct className for styling', () => {
     const wrapper = shallow(<Counter count={0} />);
     expect(wrapper.hasClass('counter')).toBeTruthy();
   });

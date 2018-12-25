@@ -1,5 +1,4 @@
 import {
-  ShowNextCoords,
   HandleSquareClicked,
   StartRound,
   SetCountdownValue,
@@ -9,8 +8,7 @@ import {
   ResetCount
 } from './game';
 
-export type Action = ShowNextCoords
-  | HandleSquareClicked
+export type Action = HandleSquareClicked
   | StartRound
   | SetCountdownValue
   | StartPlay

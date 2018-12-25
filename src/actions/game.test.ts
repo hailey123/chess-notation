@@ -4,12 +4,6 @@ import { RoundStartCountdownSeconds, RoundLengthSeconds } from '../constants/mod
 import { GameState, StoreState } from '../types';
 
 describe('game actions', () => {
-  it('should create an action to show next coordinates', () => {
-    const expectedAction: actions.ShowNextCoords = {
-      type: constants.SHOW_NEXT_COORDS
-    };
-    expect(actions.showNextCoords()).toEqual(expectedAction);
-  });
   it('should create an action to handle target square clicked', () => {
     const isTarget = true;
     const expectedAction: actions.HandleSquareClicked = {

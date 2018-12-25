@@ -1,7 +1,6 @@
 import { Action } from '../actions';
 import { GameState } from '../types';
 import {
-  SHOW_NEXT_COORDS,
   HANDLE_SQUARE_CLICKED,
   SET_COUNTDOWN_VALUE,
   START_PLAY,
@@ -16,9 +15,6 @@ export default function game(
   state: GameState = BaseGameState,
   action: Action): GameState {
   switch (action.type) {
-    case SHOW_NEXT_COORDS:
-      const nextCoords = generateRandomCoords(state.currentCoords);
-      return { ...state, currentCoords: nextCoords };
     case HANDLE_SQUARE_CLICKED:
       if (action.isTarget) {
         return {

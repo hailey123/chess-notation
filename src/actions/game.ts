@@ -5,10 +5,6 @@ import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';
 import { RoundLengthSeconds, RoundStartCountdownSeconds } from '../constants/models';
 
-export interface ShowNextCoords {
-  type: constants.SHOW_NEXT_COORDS;
-}
-
 export interface HandleSquareClicked {
   type: constants.HANDLE_SQUARE_CLICKED;
   isTarget: boolean;
@@ -38,12 +34,6 @@ export interface EndRound {
 
 export interface ResetCount {
   type: constants.RESET_COUNT;
-}
-
-export function showNextCoords(): ShowNextCoords {
-  return {
-    type: constants.SHOW_NEXT_COORDS
-  };
 }
 
 export function handleSquareClicked(isTarget: boolean): HandleSquareClicked {

@@ -54,6 +54,12 @@ describe('game actions', () => {
     };
     expect(actions.endRound()).toEqual(expectedAction);
   });
+  it('should create an action to reset the count', () => {
+    const expectedAction: actions.ResetCount = {
+      type: constants.RESET_COUNT
+    };
+    expect(actions.resetCount()).toEqual(expectedAction);
+  });
   describe('startRound', () => {
     it('should return a function that returns a Promise', () => {
       const mockDispatch = jest.fn();

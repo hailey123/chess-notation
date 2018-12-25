@@ -3,6 +3,7 @@ import { StoreState } from '../types';
 import { Dispatch, AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';
+import { RoundLengthSeconds, RoundStartCountdownSeconds } from '../constants/models';
 
 export interface ShowNextCoords {
   type: constants.SHOW_NEXT_COORDS;
@@ -82,14 +83,14 @@ export function startRound(): ThunkAction<Promise<void>, StoreState, null, Actio
   };
 }
 
-function setRoundStartCountdownInterval(
+export function setRoundStartCountdownInterval(
   dispatch: Dispatch<AnyAction>,
   getState: () => StoreState,
   resolve: (value?: void | PromiseLike<void> | undefined) => void
 ) {
-  let roundStartCountdownValue = 3;
+  let roundStartCountdownValue = RoundStartCountdownSeconds;
   dispatch(setCountdownValue(roundStartCountdownValue));
-  dispatch(setRoundTimerValue(5));
+  dispatch(setRoundTimerValue(RoundLengthSeconds));
   const msPerRoundStartCountdownCount = 1000;
 
   const roundStartCountdownClockInterval = setInterval(() => {
@@ -104,7 +105,7 @@ function setRoundStartCountdownInterval(
   },                                                   msPerRoundStartCountdownCount);
 }
 
-function setRoundTimerInterval(
+export function setRoundTimerInterval(
   dispatch: Dispatch<AnyAction>,
   getState: () => StoreState,
   resolve: (value?: void | PromiseLike<void> | undefined) => void

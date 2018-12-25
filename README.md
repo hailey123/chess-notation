@@ -11,6 +11,8 @@ A single player game to help you learn chess notation. The game is in progress a
 2. Click as many correct squares on the chess board as possible. The current target square is displayed above the board, in the middle.
 3. Your score is the total correct clicks you make before your time runs out. The goal is to achieve the highest score possible.
 
+![](public/chess-notation-demo.gif)
+
 ## Development
 
 ### Build & Run

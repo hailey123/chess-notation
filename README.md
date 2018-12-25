@@ -19,7 +19,7 @@ A single player game to help you learn chess notation. The game is in progress a
 
 ```
 npm install
-npm run start
+npm start
 ```
 
 ### Test
@@ -27,7 +27,12 @@ npm run start
 #### From Terminal
 
 ```
-npm run test
+npm test
+```
+To see a code coverage report:
+
+```
+npm run test:coverage
 ```
 
 #### Debug Tests in VS Code

@@ -11,7 +11,8 @@ describe('mapStateToProps', () => {
       countdownValue: null,
       currentCoords: null,
       timeLeftInRound: RoundLengthSeconds,
-      roundInProgress: false
+      roundInProgress: false,
+      count: 0
     };
     basePropsPassedIn = {
       coordinate: {

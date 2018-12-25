@@ -16,7 +16,8 @@ export default function game(
     countdownValue: null,
     currentCoords: null,
     timeLeftInRound: RoundLengthSeconds,
-    roundInProgress: false
+    roundInProgress: false,
+    count: 0
   },
   action: Action): GameState {
   switch (action.type) {

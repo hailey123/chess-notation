@@ -16,6 +16,7 @@ export interface GameState {
   currentCoords: Coordinate | null; // Coords currently show & awaiting click on board
   timeLeftInRound: number;
   roundInProgress: boolean;
+  count: number;
 }
 
 export interface LeaderboardState { }

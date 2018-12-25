@@ -8,7 +8,10 @@ import { coordinatesEqual } from '../../lib/boardUtils';
 
 export function mapStateToProps({ game }: StoreState, ownProps: PropsPassedIn) {
   const targetCoords = game.currentCoords;
-  return { isTarget: targetCoords && coordinatesEqual(targetCoords, ownProps.coordinate) };
+  return {
+    isTarget: targetCoords && coordinatesEqual(targetCoords, ownProps.coordinate),
+    roundInProgress: game.roundInProgress
+  };
 }
 
 export default connect(mapStateToProps, {

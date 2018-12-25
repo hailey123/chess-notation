@@ -2,7 +2,7 @@
   flex: 1;
 }
 
-.board-square:hover {
+.board-square.enabled:hover {
   background-color: rgb(255, 206, 115)!important;
   cursor: pointer;
 }

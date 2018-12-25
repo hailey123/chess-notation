@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/hailey123/chess-notation.svg?branch=master)](https://travis-ci.com/hailey123/chess-notation)
-[![Coverage Status](https://coveralls.io/repos/github/hailey123/chess-notation/badge.svg?branch=travis-ci)](https://coveralls.io/github/hailey123/chess-notation?branch=travis-ci)
+[![Coverage Status](https://coveralls.io/repos/github/hailey123/chess-notation/badge.svg?branch=master)](https://coveralls.io/github/hailey123/chess-notation?branch=master)
 
 # Chess Notation
 

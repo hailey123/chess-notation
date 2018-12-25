@@ -24,4 +24,32 @@ describe('game actions', () => {
     };
     expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
   });
+  it('should create an action to set the countdown value', () => {
+    const value = 2;
+    const expectedAction: actions.SetCountdownValue = {
+      value,
+      type: constants.SET_COUNTDOWN_VALUE
+    };
+    expect(actions.setCountdownValue(value)).toEqual(expectedAction);
+  });
+  it('should create an action to start play', () => {
+    const expectedAction: actions.StartPlay = {
+      type: constants.START_PLAY
+    };
+    expect(actions.startPlay()).toEqual(expectedAction);
+  });
+  it('should create an action to set the round timer value', () => {
+    const value = 40;
+    const expectedAction: actions.SetRoundTimerValue = {
+      value,
+      type: constants.SET_ROUND_TIMER_VALUE
+    };
+    expect(actions.setRoundTimerValue(value)).toEqual(expectedAction);
+  });
+  it('should create an action to end a round', () => {
+    const expectedAction: actions.EndRound = {
+      type: constants.END_ROUND
+    };
+    expect(actions.endRound()).toEqual(expectedAction);
+  });
 });

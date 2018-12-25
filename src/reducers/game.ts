@@ -10,16 +10,10 @@ import {
   RESET_COUNT
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
-import { RoundLengthSeconds } from '../constants/models';
+import { BaseGameState } from '../constants/models';
 
 export default function game(
-  state: GameState = {
-    countdownValue: null,
-    currentCoords: null,
-    timeLeftInRound: RoundLengthSeconds,
-    roundInProgress: false,
-    count: 0
-  },
+  state: GameState = BaseGameState,
   action: Action): GameState {
   switch (action.type) {
     case SHOW_NEXT_COORDS:

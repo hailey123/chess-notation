@@ -2,8 +2,23 @@ import game from './game';
 import { GameState, Coordinate } from '../types';
 import * as util from '../lib/boardUtils';
 import { BaseGameState } from '../constants/models';
-import { HANDLE_SQUARE_CLICKED, SET_COUNTDOWN_VALUE, START_PLAY, SET_ROUND_TIMER_VALUE, END_ROUND, RESET_COUNT } from '../constants/actions';
-import { HandleSquareClicked, Action, SetCountdownValue, StartPlay, SetRoundTimerValue, EndRound, ResetCount } from '../actions';
+import {
+  HANDLE_SQUARE_CLICKED,
+  SET_COUNTDOWN_VALUE,
+  START_PLAY,
+  SET_ROUND_TIMER_VALUE,
+  END_ROUND,
+  RESET_COUNT
+} from '../constants/actions';
+import {
+  HandleSquareClicked,
+  Action,
+  SetCountdownValue,
+  StartPlay,
+  SetRoundTimerValue,
+  EndRound,
+  ResetCount
+} from '../actions';
 
 describe('game reducer', () => {
   let mockGenerateRandomCoordinates: jest.SpyInstance<(

@@ -1,44 +1,51 @@
 import game from './game';
-import { SHOW_NEXT_COORDS } from '../constants/actions';
 import { GameState, Coordinate } from '../types';
 import * as util from '../lib/boardUtils';
-import { RoundLengthSeconds } from '../constants/models';
+import { BaseGameState } from '../constants/models';
+import { HANDLE_SQUARE_CLICKED } from '../constants/actions';
+import { HandleSquareClicked, Action } from '../actions';
 
 describe('game reducer', () => {
-  let initialState: GameState;
+  let mockGenerateRandomCoordinates: jest.SpyInstance<(
+    lastCoords?: Coordinate | null
+  ) => Coordinate>;
+  const nextCoordinates: Coordinate = {
+    file: 'H',
+    rank: 6
+  };
   beforeAll(() => {
-    initialState = {
-      countdownValue: null,
-      currentCoords: null,
-      timeLeftInRound: RoundLengthSeconds,
-      roundInProgress: false,
-      count: 0
-    };
-    Object.freeze(initialState);
-  });
-  it('should return the initial state', () => {
-    expect(game(undefined, {} as any)).toEqual(initialState);
-  });
-  it('should handle SHOW_NEXT_COORDS', () => {
-    const nextCoordinates: Coordinate = {
-      file: 'H',
-      rank: 6
-    };
     Object.freeze(nextCoordinates);
-    const stateAfter: GameState = {
-      ...initialState,
-      currentCoords: nextCoordinates
-    };
-    const mockGenerateRandomCoordinates = jest.spyOn(util, 'generateRandomCoords').mockReturnValue(
+  });
+  beforeEach(() => {
+    mockGenerateRandomCoordinates = jest.spyOn(util, 'generateRandomCoords').mockReturnValue(
       nextCoordinates
     );
-    expect(game(initialState, {
-      type: SHOW_NEXT_COORDS
-    })).toEqual(stateAfter);
-
+  });
+  afterEach(() => {
     // TODO: jest.restoreAllMocks in afterEach currently doesn't work.
     // After ejecting, see if I can fix this.
     // In the meantime, mocks must be individually restored.
     mockGenerateRandomCoordinates.mockRestore();
+  });
+  it('should return the initial state', () => {
+    expect(game(undefined, {} as Action)).toEqual(BaseGameState);
+  });
+  it('should handle HANDLE_SQUARE_CLICKED', () => {
+    const mockCount = 4;
+    const stateBefore: GameState = {
+      ...BaseGameState,
+      count: mockCount
+    };
+    const stateAfter: GameState = {
+      ...BaseGameState,
+      currentCoords: nextCoordinates,
+      count: mockCount + 1
+    };
+    const action: HandleSquareClicked = {
+      type: HANDLE_SQUARE_CLICKED,
+      isTarget: true
+    };
+
+    expect(game(stateBefore, action)).toEqual(stateAfter);
   });
 });

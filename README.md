@@ -3,7 +3,7 @@
 
 # Chess Notation
 
-A single player game to help you learn chess notation. The game is in progress and not functional currently.
+A single player game to help you learn chess notation.
 
 ## How to Play
 

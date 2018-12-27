@@ -2,7 +2,6 @@
   height: 580px;
   width: 580px;
   padding: 20px;
-  margin: 10px;
   background-color: #353535;
   display: flex;
   border: 1px solid black;
@@ -44,7 +43,6 @@
     width: 500px;
     height: 500px;
     padding: 14px;
-    margin: 7px;
   }
 }
 @media all and (max-width: 900px) {
@@ -52,7 +50,6 @@
     width: 400px;
     height: 400px;
     padding: 10px;
-    margin: 5px;
   }
 }
 @media all and (max-width: 600px) {
@@ -60,6 +57,5 @@
     width: 260px;
     height: 260px;
     padding: 6px;
-    margin: 3px;
   }
 }

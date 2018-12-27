@@ -3,10 +3,26 @@
   width: 64px;
   font-size: 2em;
   font-family: 'Cabin', sans-serif;
-  margin: 10px auto;
+  margin: 12px auto;
   border-radius: 8px;
   border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media all and (max-width: 1280px) {
+  .notation-instruction {
+    margin: 10px auto;
+  }
+}
+@media all and (max-width: 900px) {
+  .notation-instruction {
+    margin: 8px auto;
+  }
+}
+@media all and (max-width: 600px) {
+  .notation-instruction {
+    margin: 6px auto;
+  }
 }

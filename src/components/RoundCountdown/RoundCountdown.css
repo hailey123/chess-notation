@@ -4,3 +4,7 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.countdown-timer.finished {
+  color: rgb(190, 0, 0);
+}

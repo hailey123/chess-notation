@@ -1,10 +1,10 @@
-.countdown-timer {
+.round-countdown {
   font-size: 2em;
   font-weight: bold;
   text-align: center;
   margin: 28px 0;
 }
 
-.countdown-timer.finished {
+.round-countdown.countdown-finished {
   color: rgb(190, 0, 0);
 }

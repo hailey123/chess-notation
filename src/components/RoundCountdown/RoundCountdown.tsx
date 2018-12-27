@@ -11,7 +11,10 @@ class RoundCountdown extends React.PureComponent<Props> {
     const { secondsRemaining } = this.props;
     const clockTime = clockTimeFromSeconds(this.props.secondsRemaining);
     const displayTime = clockTimeToString(clockTime);
-    const classNames = classnames('countdown-timer', secondsRemaining === 0 ? 'finished' : '');
+    const classNames = classnames(
+      'round-countdown',
+      secondsRemaining === 0 ? 'countdown-finished' : ''
+    );
     return <div className={classNames}>
       {displayTime}
     </div>;

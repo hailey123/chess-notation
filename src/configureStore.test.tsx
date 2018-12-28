@@ -1,6 +1,4 @@
 import * as Redux from 'redux';
-// import * as ReactDom from 'react-dom';
-// import * as RegisterServiceWorker from './registerServiceWorker';
 
 import { configureStore } from './configureStore';
 
@@ -11,6 +9,7 @@ describe('configureStore', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+
   it('combines reducers', () => {
     const mockCombineReducers = jest.spyOn(Redux, 'combineReducers');
     configureStore();

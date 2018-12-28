@@ -2,6 +2,12 @@
   "name": "chess-coords",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/registerServiceWorker.ts"
+    ]
+  },
   "dependencies": {
     "@material-ui/core": "3.5.1",
     "@types/classnames": "2.2.6",

@@ -2,14 +2,14 @@ import * as React from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import './PlayAsControl.css';
+import './BoardDirectionControl.css';
 import { Props } from './props';
 
-class PlayAsControl extends React.Component<Props> {
+class BoardDirectionControl extends React.Component<Props> {
   public render() {
     const { playAsBlack, enabled, toggleBoardDirection } = this.props;
     return (
-      <div className="play-as-control">
+      <div className="board-direction-control">
         <FormControlLabel
           control={
             <Checkbox
@@ -25,4 +25,4 @@ class PlayAsControl extends React.Component<Props> {
   }
 }
 
-export default PlayAsControl;
+export default BoardDirectionControl;

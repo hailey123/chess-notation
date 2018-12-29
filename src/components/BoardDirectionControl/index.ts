@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import PlayAsControl from './PlayAsControl';
+import BoardDirectionControl from './BoardDirectionControl';
 import { StoreState } from '../../types';
 import { PropsFromState } from './props';
 import { toggleBoardDirection } from '../../actions';
@@ -14,4 +14,4 @@ export function mapStateToProps({ game, settings }: StoreState): PropsFromState 
 
 export default connect(mapStateToProps, {
   toggleBoardDirection
-})(PlayAsControl);
+})(BoardDirectionControl);

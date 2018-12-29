@@ -9,7 +9,7 @@ import NotationInstruction from '../NotationInstruction';
 import StartButton from '../StartButton';
 import RoundCountdown from '../RoundCountdown';
 import Counter from '../Counter';
-import PlayAsControl from '../PlayAsControl';
+import BoardDirectionControl from '../BoardDirectionControl';
 import BoardDirectionLabel from '../BoardDirectionLabel';
 import theme from '../../theme';
 
@@ -35,7 +35,7 @@ class App extends React.Component {
               <BoardDirectionLabel />
             </div>
             <div className="panel-after">
-              <PlayAsControl />
+              <BoardDirectionControl />
               <StartButton />
               <RoundCountdown />
               <Counter />

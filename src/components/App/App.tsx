@@ -9,6 +9,7 @@ import NotationInstruction from '../NotationInstruction';
 import StartButton from '../StartButton';
 import RoundCountdown from '../RoundCountdown';
 import Counter from '../Counter';
+import PlayAsControl from '../PlayAsControl';
 import theme from '../../theme';
 
 import './App.css';
@@ -32,6 +33,7 @@ class App extends React.Component {
               <Board />
             </div>
             <div className="panel-after">
+              <PlayAsControl />
               <StartButton />
               <RoundCountdown />
               <Counter />

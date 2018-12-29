@@ -11,6 +11,11 @@ export type ClockTime = {
   seconds: number
 };
 
+export enum ChessPlayer {
+  WHITE,
+  BLACK
+}
+
 export interface GameState {
   countdownValue: number | null;
   currentCoords: Coordinate | null; // Coords currently show & awaiting click on board

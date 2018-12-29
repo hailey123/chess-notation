@@ -5,7 +5,8 @@ import {
   StartPlay,
   SetRoundTimerValue,
   EndRound,
-  ResetCount
+  ResetCount,
+  ToggleBoardDirection
 } from './game';
 
 export type Action = HandleSquareClicked
@@ -14,6 +15,7 @@ export type Action = HandleSquareClicked
   | StartPlay
   | SetRoundTimerValue
   | EndRound
-  | ResetCount;
+  | ResetCount
+  | ToggleBoardDirection;
 
 export * from './game';

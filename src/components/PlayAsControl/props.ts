@@ -1,11 +1,9 @@
-import { ChessPlayer } from '../../types';
-
-type PropsFromState = {
-  playAs: ChessPlayer
+export type PropsFromState = {
+  playAsBlack: boolean
 };
 
 type PropsFromDispatch = {
-  onClick: () => void
+  toggleBoardDirection: () => void
 };
 
-export type Prop = PropsFromState & PropsFromDispatch;
+export type Props = PropsFromState & PropsFromDispatch;

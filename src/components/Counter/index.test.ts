@@ -1,5 +1,5 @@
 import { StoreState } from '../../types';
-import { BaseGameState } from '../../constants/models';
+import { BaseGameState, BaseSettingsState } from '../../constants/models';
 import { mapStateToProps } from '.';
 import { Props } from './props';
 
@@ -12,7 +12,7 @@ describe('mapStateToProps', () => {
         count: mockCount
       },
       leaderboard: {},
-      settings: {}
+      settings: BaseSettingsState
     };
     const expectedProps: Props = {
       count: mockCount

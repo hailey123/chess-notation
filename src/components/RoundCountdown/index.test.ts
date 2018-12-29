@@ -1,6 +1,6 @@
 import { mapStateToProps } from '.';
 import { StoreState } from '../../types';
-import { BaseGameState } from '../../constants/models';
+import { BaseGameState, BaseSettingsState } from '../../constants/models';
 import { Props } from './props';
 
 describe('mapStateToProps', () => {
@@ -12,7 +12,7 @@ describe('mapStateToProps', () => {
         timeLeftInRound
       },
       leaderboard: {},
-      settings: {}
+      settings: BaseSettingsState
     };
     const expectedProps: Props = {
       secondsRemaining: timeLeftInRound

@@ -1,4 +1,4 @@
-import { Rank, File, GameState } from '../types';
+import { Rank, File, GameState, SettingsState } from '../types';
 
 export const Ranks: Rank[] = [1, 2, 3, 4, 5, 6, 7, 8];
 export const Files: File[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -12,4 +12,10 @@ export const BaseGameState: GameState = Object.freeze({
   timeLeftInRound: RoundLengthSeconds,
   roundInProgress: false,
   count: 0
+});
+
+export const BaseSettingsState: SettingsState = Object.freeze({
+  playAsBlack: false,
+  lightSquareColor: '#eae1d7',
+  darkSquareColor: '#353535'
 });

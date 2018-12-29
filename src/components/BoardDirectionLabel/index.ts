@@ -4,7 +4,7 @@ import BoardDirectionLabel from './BoardDirectionLabel';
 import { StoreState } from '../../types';
 import { PropsFromState } from './props';
 
-function mapStateToProps({ settings }: StoreState): PropsFromState {
+export function mapStateToProps({ settings }: StoreState): PropsFromState {
   return {
     playerColor: settings.playAsBlack ? 'Black' : 'White'
   };

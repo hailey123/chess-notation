@@ -5,9 +5,9 @@ import {
   StartPlay,
   SetRoundTimerValue,
   EndRound,
-  ResetCount,
-  ToggleBoardDirection
+  ResetCount
 } from './game';
+import { ToggleBoardDirection } from './settings';
 
 export type Action = HandleSquareClicked
   | StartRound
@@ -19,3 +19,4 @@ export type Action = HandleSquareClicked
   | ToggleBoardDirection;
 
 export * from './game';
+export * from './settings';

@@ -36,10 +36,6 @@ export interface ResetCount {
   type: constants.RESET_COUNT;
 }
 
-export interface ToggleBoardDirection {
-  type: constants.TOGGLE_BOARD_DIRECTION;
-}
-
 export function handleSquareClicked(isTarget: boolean): HandleSquareClicked {
   return {
     isTarget,
@@ -76,12 +72,6 @@ export function endRound(): EndRound {
 export function resetCount(): ResetCount {
   return {
     type: constants.RESET_COUNT
-  };
-}
-
-export function toggleBoardDirection(): ToggleBoardDirection {
-  return {
-    type: constants.TOGGLE_BOARD_DIRECTION
   };
 }
 

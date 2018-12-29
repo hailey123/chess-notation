@@ -16,7 +16,7 @@ class PlayAsControl extends React.Component<Props> {
               checked={playAsBlack}
               disabled={!enabled}
               onChange={toggleBoardDirection}
-              value="Black"
+              value="Playing as Black"
             />
           }
           label="Play as Black"

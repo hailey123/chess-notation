@@ -3,6 +3,10 @@ import { FormControlLabel, Checkbox } from '@material-ui/core';
 
 import './BoardDirectionControl.css';
 import { Props } from './props';
+import {
+  BOARD_DIRECTION_CONTROL_LABEL,
+  BOARD_DIRECTION_LABEL_PREFIX
+} from '../../constants/userFacingStrings';
 
 class BoardDirectionControl extends React.Component<Props> {
   public render() {
@@ -15,10 +19,10 @@ class BoardDirectionControl extends React.Component<Props> {
               checked={playAsBlack}
               disabled={!enabled}
               onChange={toggleBoardDirection}
-              value="Playing as Black"
+              value={`${BOARD_DIRECTION_LABEL_PREFIX}Black`}
             />
           }
-          label="Play as Black"
+          label={BOARD_DIRECTION_CONTROL_LABEL}
         />
       </div>);
   }

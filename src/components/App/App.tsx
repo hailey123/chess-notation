@@ -10,6 +10,7 @@ import StartButton from '../StartButton';
 import RoundCountdown from '../RoundCountdown';
 import Counter from '../Counter';
 import PlayAsControl from '../PlayAsControl';
+import BoardDirectionLabel from '../BoardDirectionLabel';
 import theme from '../../theme';
 
 import './App.css';
@@ -31,6 +32,7 @@ class App extends React.Component {
             <div className="panel-main">
               <NotationInstruction />
               <Board />
+              <BoardDirectionLabel />
             </div>
             <div className="panel-after">
               <PlayAsControl />

@@ -1,5 +1,6 @@
 export type PropsFromState = {
-  playAsBlack: boolean
+  playAsBlack: boolean,
+  enabled: boolean
 };
 
 type PropsFromDispatch = {

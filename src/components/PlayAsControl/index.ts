@@ -5,9 +5,10 @@ import { StoreState } from '../../types';
 import { PropsFromState } from './props';
 import { toggleBoardDirection } from '../../actions';
 
-export function mapStateToProps({ settings }: StoreState): PropsFromState {
+export function mapStateToProps({ game, settings }: StoreState): PropsFromState {
   return {
-    playAsBlack: settings.playAsBlack
+    playAsBlack: settings.playAsBlack,
+    enabled: !game.countdownValue && !game.roundInProgress
   };
 }
 

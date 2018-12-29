@@ -4,7 +4,7 @@ import { mapStateToProps } from '.';
 import { Props } from './props';
 
 describe('mapStateToProps', () => {
-  it('maps the playerColor correctly', () => {
+  it('maps the playerColor correctly when playing as black', () => {
     const mockState: StoreState = {
       game: BaseGameState,
       leaderboard: {},
@@ -15,6 +15,21 @@ describe('mapStateToProps', () => {
     };
     const expectedProps: Props = {
       playerColor: 'Black'
+    };
+
+    expect(mapStateToProps(mockState)).toEqual(expectedProps);
+  });
+  it('maps the playerColor correctly when not playing as black', () => {
+    const mockState: StoreState = {
+      game: BaseGameState,
+      leaderboard: {},
+      settings: {
+        ...BaseSettingsState,
+        playAsBlack: false
+      }
+    };
+    const expectedProps: Props = {
+      playerColor: 'White'
     };
 
     expect(mapStateToProps(mockState)).toEqual(expectedProps);

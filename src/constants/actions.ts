@@ -18,3 +18,6 @@ export type END_ROUND = typeof END_ROUND;
 
 export const RESET_COUNT = 'RESET_COUNT';
 export type RESET_COUNT = typeof RESET_COUNT;
+
+export const TOGGLE_BOARD_DIRECTION = 'TOGGLE_BOARD_DIRECTION';
+export type TOGGLE_BOARD_DIRECTION = typeof TOGGLE_BOARD_DIRECTION;

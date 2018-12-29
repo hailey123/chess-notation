@@ -1,7 +1,7 @@
 import { StoreState } from '../../types';
 import { mapStateToProps } from '.';
 import { PropsPassedIn } from './props';
-import { BaseGameState } from '../../constants/models';
+import { BaseGameState, BaseSettingsState } from '../../constants/models';
 
 describe('mapStateToProps', () => {
   let basePropsPassedIn: PropsPassedIn;
@@ -19,7 +19,7 @@ describe('mapStateToProps', () => {
     const state: StoreState = {
       game: BaseGameState,
       leaderboard: {},
-      settings: {}
+      settings: BaseSettingsState
     };
     expect(mapStateToProps(state, basePropsPassedIn).isTarget).toBeFalsy();
   });
@@ -33,7 +33,7 @@ describe('mapStateToProps', () => {
         }
       },
       leaderboard: {},
-      settings: {}
+      settings: BaseSettingsState
     };
     expect(mapStateToProps(state, basePropsPassedIn).isTarget).toBeFalsy();
   });
@@ -44,7 +44,7 @@ describe('mapStateToProps', () => {
         currentCoords: basePropsPassedIn.coordinate
       },
       leaderboard: {},
-      settings: {}
+      settings: BaseSettingsState
     };
     expect(mapStateToProps(state, basePropsPassedIn).isTarget).toBeTruthy();
   });

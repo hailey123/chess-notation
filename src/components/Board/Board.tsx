@@ -24,9 +24,9 @@ class Board extends React.PureComponent<Props> {
 
     if (playAsBlack) {
       orderedRanks = Ranks;
-      orderedFiles = Files.reverse();
+      orderedFiles = Files.slice().reverse();
     } else {
-      orderedRanks = Ranks.reverse();
+      orderedRanks = Ranks.slice().reverse();
       orderedFiles = Files;
     }
     const { countdownValue } = this.props;

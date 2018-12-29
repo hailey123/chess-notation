@@ -1,6 +1,8 @@
 export type Rank = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 export type File = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H';
 
+export type PlayerColor = 'White' | 'Black';
+
 export type Coordinate = {
   rank: Rank,
   file: File
@@ -13,7 +15,7 @@ export type ClockTime = {
 
 export interface GameState {
   countdownValue: number | null;
-  currentCoords: Coordinate | null; // Coords currently show & awaiting click on board
+  currentCoords: Coordinate | null;
   timeLeftInRound: number;
   roundInProgress: boolean;
   count: number;
@@ -22,7 +24,7 @@ export interface GameState {
 export interface LeaderboardState { }
 
 export interface SettingsState {
-  playAsBlack?: boolean;
+  playAsBlack: boolean;
   lightSquareColor?: string;
   darkSquareColor?: string;
 }

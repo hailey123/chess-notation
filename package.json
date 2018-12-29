@@ -5,7 +5,8 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
-      "!src/registerServiceWorker.ts"
+      "!src/registerServiceWorker.ts",
+      "!src/**/props.ts"
     ]
   },
   "dependencies": {

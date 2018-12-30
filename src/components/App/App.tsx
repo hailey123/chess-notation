@@ -4,18 +4,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import Board from '../Board';
-import NotationInstruction from '../NotationInstruction';
-import StartButton from '../StartButton';
-import RoundCountdown from '../RoundCountdown';
-import Counter from '../Counter';
-import BoardDirectionControl from '../BoardDirectionControl';
-import BoardDirectionLabel from '../BoardDirectionLabel';
+import PlayRegion from '../PlayRegion';
+import GameControls from '../GameControls';
 import theme from '../../theme';
 
 import './App.css';
 
-class App extends React.Component {
+class App extends React.PureComponent {
   public render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -30,15 +25,10 @@ class App extends React.Component {
           <main>
             <div className="panel-before" />
             <div className="panel-main">
-              <NotationInstruction />
-              <Board />
-              <BoardDirectionLabel />
+              <PlayRegion />
             </div>
             <div className="panel-after">
-              <BoardDirectionControl />
-              <StartButton />
-              <RoundCountdown />
-              <Counter />
+              <GameControls />
             </div>
           </main>
         </div>

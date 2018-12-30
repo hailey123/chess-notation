@@ -15,7 +15,7 @@ describe('BoardDirectionControl', () => {
   it('has the correct className for styling', () => {
     const wrapper = shallow(<BoardDirectionControl {...baseProps} />);
 
-    expect(wrapper.hasClass('board-direction-control'));
+    expect(wrapper.hasClass('board-direction-control')).toBeTruthy();
   });
   it('has a control to switch the board direction', () => {
     const wrapper = shallow(<BoardDirectionControl {...baseProps} />);

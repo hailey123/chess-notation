@@ -12,6 +12,7 @@ describe('mapStateToProps', () => {
     };
     const expectedProps: Props = {
       playAsBlack: BaseSettingsState.playAsBlack,
+      // TODO: fix
       lightSquareColor: BaseSettingsState.lightSquareColor,
       darkSquareColor: BaseSettingsState.darkSquareColor,
       countdownValue: BaseGameState.countdownValue

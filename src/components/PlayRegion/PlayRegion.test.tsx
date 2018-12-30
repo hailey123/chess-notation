@@ -12,6 +12,7 @@ describe('PlayRegion', () => {
   beforeEach(() => {
     wrapper = shallow(<PlayRegion />);
   });
+
   it('has an instruction in chess notation for the target square to click', () => {
     expect(wrapper.find(NotationInstruction).length).toBe(1);
   });

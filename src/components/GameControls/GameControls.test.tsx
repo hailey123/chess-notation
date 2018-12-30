@@ -12,6 +12,7 @@ describe('GameControls', () => {
   beforeEach(() => {
     wrapper = shallow(<GameControls />);
   });
+
   it('has a control for flipping the board', () => {
     expect(wrapper.find(BoardDirectionControl).length).toBe(1);
   });

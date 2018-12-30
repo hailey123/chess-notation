@@ -65,7 +65,7 @@ describe('Board', () => {
     const wrapper = shallow(<Board {...baseProps} />);
 
     expect(
-      wrapper.find(ranksSelector).at(0).childAt(0).props().coordinate
+      wrapper.find(ranksSelector).at(0).children(BoardSquare).at(0).props().coordinate
     ).toEqual({ file: 'A', rank: 8 });
   });
   it('has H1 in the upper left corner when playing as black', () => {
@@ -76,7 +76,7 @@ describe('Board', () => {
     const wrapper = shallow(<Board {...props} />);
 
     expect(
-      wrapper.find(ranksSelector).at(0).childAt(0).props().coordinate
+      wrapper.find(ranksSelector).at(0).children(BoardSquare).at(0).props().coordinate
     ).toEqual({ file: 'H', rank: 1 });
   });
 });

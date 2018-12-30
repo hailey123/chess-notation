@@ -17,7 +17,8 @@ class Board extends React.PureComponent<Props> {
     const {
       playAsBlack,
       darkSquareColor,
-      lightSquareColor
+      lightSquareColor,
+      countdownValue
     } = this.props;
     let orderedRanks: Rank[];
     let orderedFiles: File[];
@@ -29,7 +30,6 @@ class Board extends React.PureComponent<Props> {
       orderedRanks = Ranks.slice().reverse();
       orderedFiles = Files;
     }
-    const { countdownValue } = this.props;
 
     return (
       <div className="board">

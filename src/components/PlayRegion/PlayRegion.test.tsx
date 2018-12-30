@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ShallowWrapper, shallow } from 'enzyme';
+
 import PlayRegion from './PlayRegion';
 import NotationInstruction from '../NotationInstruction';
 import Board from '../Board';

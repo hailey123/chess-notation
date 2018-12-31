@@ -9,6 +9,7 @@ import {
   SET_ROUND_TIMER_VALUE,
   DECREMENT_ROUND_TIMER_VALUE,
   RESET_COUNT,
+  DONE_SHOWING_PENALTY,
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
 import { BaseGameState, TimePenaltySeconds } from '../constants/models';
@@ -33,6 +34,7 @@ export default function game(
       }
       return {
         ...state,
+        showingPenalty: true,
         timeLeftInRound: state.timeLeftInRound - TimePenaltySeconds
       };
     case SET_COUNTDOWN_VALUE:
@@ -68,6 +70,11 @@ export default function game(
       return {
         ...state,
         count: 0
+      };
+    case DONE_SHOWING_PENALTY:
+      return {
+        ...state,
+        showingPenalty: false
       };
   }
   return state;

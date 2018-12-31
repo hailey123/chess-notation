@@ -76,7 +76,8 @@ describe('game reducer', () => {
     Object.freeze(stateBefore);
     const stateAfter: GameState = {
       ...BaseGameState,
-      timeLeftInRound: roundTimerValue - TimePenaltySeconds
+      timeLeftInRound: roundTimerValue - TimePenaltySeconds,
+      showingPenalty: true
     };
     Object.freeze(stateAfter);
     const action: HandleIncorrectSquareClicked = {
@@ -86,12 +87,11 @@ describe('game reducer', () => {
     expect(game(stateBefore, action)).toEqual(stateAfter);
   });
   test(
-    'HANDLE_INCORRECT_SQUARE_CLICKED for non-target square when < TimePenaltySeconds left',
+    'HANDLE_INCORRECT_SQUARE_CLICKED for non-target square when <= TimePenaltySeconds left',
     () => {
-      const roundTimerValue = 2;
       const stateBefore: GameState = {
         ...BaseGameState,
-        timeLeftInRound: roundTimerValue
+        timeLeftInRound: TimePenaltySeconds
       };
       Object.freeze(stateBefore);
       const stateAfter: GameState = {

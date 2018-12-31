@@ -5,6 +5,6 @@
   margin: 28px 0;
 }
 
-.round-countdown.countdown-finished {
+.round-countdown.red {
   color: rgb(190, 0, 0);
 }

@@ -4,7 +4,10 @@ import RoundCountdown from './RoundCountdown';
 import { StoreState } from '../../types';
 
 export function mapStateToProps({ game }: StoreState) {
-  return { secondsRemaining: game.timeLeftInRound };
+  return {
+    secondsRemaining: game.timeLeftInRound,
+    showingPenalty: game.showingPenalty
+  };
 }
 
 export default connect(mapStateToProps)(RoundCountdown);

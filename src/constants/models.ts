@@ -13,7 +13,8 @@ export const BaseGameState: GameState = Object.freeze({
   currentCoords: null,
   timeLeftInRound: RoundLengthSeconds,
   roundInProgress: false,
-  count: 0
+  count: 0,
+  showingPenalty: false
 });
 
 export const BaseSettingsState: SettingsState = Object.freeze({

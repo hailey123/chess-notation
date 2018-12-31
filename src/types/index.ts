@@ -19,6 +19,7 @@ export interface GameState {
   timeLeftInRound: number;
   roundInProgress: boolean;
   count: number;
+  showingPenalty: boolean;
 }
 
 export interface LeaderboardState { }

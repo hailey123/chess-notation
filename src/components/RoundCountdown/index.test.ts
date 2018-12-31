@@ -15,7 +15,8 @@ describe('mapStateToProps', () => {
       settings: BaseSettingsState
     };
     const expectedProps: Props = {
-      secondsRemaining: timeLeftInRound
+      secondsRemaining: timeLeftInRound,
+      showingPenalty: BaseGameState.showingPenalty
     };
 
     expect(mapStateToProps(mockState)).toEqual(expectedProps);

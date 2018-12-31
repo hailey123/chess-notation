@@ -3,7 +3,8 @@ import { Action } from '../actions';
 
 export default function leaderboard(
   state: LeaderboardState = {},
-  _action: Action
+  action: Action
 ): LeaderboardState {
+  switch (action.type) { }
   return state;
 }

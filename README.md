@@ -10,6 +10,7 @@ A single player game to help you learn chess notation.
 1. Press the START button.
 2. Click as many correct squares on the chess board as possible. The current target square is displayed above the board, in the middle.
 3. Your score is the total correct clicks you make before your time runs out. The goal is to achieve the highest score possible.
+4. For each incorrect square clicked, 3 seconds will be subtracted from the clock!
 
 ![](public/chess-notation-demo.gif)
 

@@ -3,7 +3,9 @@ import * as constants from '../constants/actions';
 import {
   TimePenaltySeconds,
   RoundLengthSeconds,
-  RoundStartCountdownSeconds
+  RoundStartCountdownSeconds,
+  BaseGameState,
+  BaseSettingsState
 } from '../constants/models';
 import { GameState, StoreState } from '../types';
 
@@ -12,6 +14,7 @@ describe('game actions', () => {
     jest.useFakeTimers();
   });
   afterEach(() => {
+    jest.clearAllTimers();
     jest.clearAllMocks();
   });
 
@@ -103,11 +106,21 @@ describe('game actions', () => {
 
       thunkAction(mockDispatch, mockGetState, null);
       expect(mockDispatch).not.toHaveBeenCalledWith(actions.doneShowingPenalty());
+
       jest.runAllTimers();
       expect(mockDispatch).toHaveBeenCalledWith(actions.doneShowingPenalty());
     });
   });
   describe('startRound', () => {
+    it('should reset the count to 0', () => {
+      const mockDispatch = jest.fn();
+      const mockGetState = jest.fn();
+
+      const thunkAction = actions.startRound();
+      thunkAction(mockDispatch, mockGetState, null);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actions.resetCount());
+    });
     it('should return a function that returns a Promise', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn();
@@ -116,7 +129,7 @@ describe('game actions', () => {
 
       expect(thunkAction(mockDispatch, mockGetState, null)).toBeInstanceOf(Promise);
     });
-    test('setRoundStartCountdownInterval initializes properly', () => {
+    test('setRoundStartCountdownInterval sets up countdown, timer & interval', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn();
       const mockResolve = jest.fn();
@@ -131,6 +144,33 @@ describe('game actions', () => {
       );
       expect(setInterval).toHaveBeenCalledTimes(1);
     });
+    test('setRoundStartCountdownInterval counts down to the round start', () => {
+      const mockDispatch = jest.fn();
+      const mockGetState = jest.fn().mockReturnValue({
+        game: BaseGameState,
+        leaderboard: {},
+        settings: BaseSettingsState
+      });
+      const mockResolve = jest.fn();
+
+      actions.setRoundStartCountdownInterval(mockDispatch, mockGetState, mockResolve);
+
+      for (let i = RoundStartCountdownSeconds - 1; i > 0; i -= 1) {
+        // Clear previous calls so we can calls per interval
+        mockDispatch.mockClear();
+
+        // Advance to the next interval
+        jest.runOnlyPendingTimers();
+
+        expect(mockDispatch).toHaveBeenCalledWith(actions.setCountdownValue(i));
+      }
+
+      // Final interval
+      mockDispatch.mockClear();
+      jest.runOnlyPendingTimers();
+      expect(clearInterval).toHaveBeenCalledTimes(1);
+      expect(mockDispatch).toHaveBeenCalledWith(actions.startPlay());
+    });
     test('setRoundTimerInterval initializes properly', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn().mockReturnValue({
@@ -142,5 +182,40 @@ describe('game actions', () => {
 
       expect(setInterval).toHaveBeenCalledTimes(1);
     });
+  });
+  test('setRoundTimerInterval counts down the round', () => {
+    const mockDispatch = jest.fn();
+    // timeRemaining of 1 causes the interval to execute twice:
+    // once to just decrement the time remaining and the second time
+    // to decrement the time, clear the interval, & end the round
+    let timeRemaining = 1;
+    const mockGetState = jest.fn().mockImplementation(() => {
+      return {
+        game: {
+          ...BaseGameState,
+          // tslint:disable-next-line:no-increment-decrement
+          timeLeftInRound: timeRemaining--
+        },
+        leaderboard: {},
+        settings: BaseSettingsState
+      };
+    }
+    );
+    const mockResolve = jest.fn();
+    const decrementTimerBy1Second = actions.decrementRoundTimerValue(1);
+
+    actions.setRoundTimerInterval(mockDispatch, mockGetState, mockResolve);
+
+    // Execute the second last interval
+    jest.runOnlyPendingTimers();
+    expect(mockDispatch).toHaveBeenCalledWith(decrementTimerBy1Second);
+
+    // Execute the last interval
+    mockDispatch.mockClear();
+    jest.runOnlyPendingTimers();
+    expect(mockDispatch).toHaveBeenCalledWith(decrementTimerBy1Second);
+    expect(clearInterval).toHaveBeenCalledTimes(1);
+    expect(mockDispatch).toHaveBeenCalledWith(actions.endRound());
+    expect(mockResolve).toHaveBeenCalledTimes(1);
   });
 });

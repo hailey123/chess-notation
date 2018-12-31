@@ -5,6 +5,7 @@ export const Files: File[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 export const RoundStartCountdownSeconds = 3;
 export const RoundLengthSeconds = 30;
+export const TimePenaltySeconds = 3;
 
 export const BaseGameState: GameState = Object.freeze({
   countdownValue: null,

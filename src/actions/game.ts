@@ -36,6 +36,10 @@ export interface ResetCount {
   type: constants.RESET_COUNT;
 }
 
+export interface TimePenalty {
+  type: constants.TIME_PENALTY;
+}
+
 export function handleSquareClicked(isTarget: boolean): HandleSquareClicked {
   return {
     isTarget,
@@ -72,6 +76,12 @@ export function endRound(): EndRound {
 export function resetCount(): ResetCount {
   return {
     type: constants.RESET_COUNT
+  };
+}
+
+export function timePenalty(): TimePenalty {
+  return {
+    type: constants.TIME_PENALTY
   };
 }
 

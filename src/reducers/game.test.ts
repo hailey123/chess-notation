@@ -91,11 +91,13 @@ describe('game reducer', () => {
     () => {
       const stateBefore: GameState = {
         ...BaseGameState,
+        roundInProgress: true,
         timeLeftInRound: TimePenaltySeconds
       };
       Object.freeze(stateBefore);
       const stateAfter: GameState = {
         ...BaseGameState,
+        roundInProgress: false,
         timeLeftInRound: 0
       };
       Object.freeze(stateAfter);

@@ -53,7 +53,7 @@ describe('game actions', () => {
     };
     expect(actions.endRound()).toEqual(expectedAction);
   });
-  it('should create an action to reset the count', () => {
+  it('should create an action to reset the move count', () => {
     const expectedAction: actions.ResetCount = {
       type: constants.RESET_COUNT
     };
@@ -112,7 +112,7 @@ describe('game actions', () => {
     });
   });
   describe('startRound', () => {
-    it('should reset the count to 0', () => {
+    it('should reset the move count', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn();
 
@@ -156,7 +156,7 @@ describe('game actions', () => {
       actions.setRoundStartCountdownInterval(mockDispatch, mockGetState, mockResolve);
 
       for (let i = RoundStartCountdownSeconds - 1; i > 0; i -= 1) {
-        // Clear previous calls so we can calls per interval
+        // Clear previous calls so we can look at calls per interval
         mockDispatch.mockClear();
 
         // Advance to the next interval
@@ -165,7 +165,7 @@ describe('game actions', () => {
         expect(mockDispatch).toHaveBeenCalledWith(actions.setCountdownValue(i));
       }
 
-      // Final interval
+      // Final interval, which includes clearing the interval & starting play
       mockDispatch.mockClear();
       jest.runOnlyPendingTimers();
       expect(clearInterval).toHaveBeenCalledTimes(1);
@@ -210,7 +210,7 @@ describe('game actions', () => {
     jest.runOnlyPendingTimers();
     expect(mockDispatch).toHaveBeenCalledWith(decrementTimerBy1Second);
 
-    // Execute the last interval
+    // Execute the last interval, which involves clearing the interval and ending the round
     mockDispatch.mockClear();
     jest.runOnlyPendingTimers();
     expect(mockDispatch).toHaveBeenCalledWith(decrementTimerBy1Second);

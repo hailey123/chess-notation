@@ -4,9 +4,9 @@ import {
   SetCountdownValue,
   StartPlay,
   SetRoundTimerValue,
+  DecrementRoundTimerValue,
   EndRound,
-  ResetCount,
-  TimePenalty
+  ResetCount
 } from './game';
 import { ToggleBoardDirection } from './settings';
 
@@ -15,10 +15,10 @@ export type Action = HandleSquareClicked
   | SetCountdownValue
   | StartPlay
   | SetRoundTimerValue
+  | DecrementRoundTimerValue
   | EndRound
   | ResetCount
-  | ToggleBoardDirection
-  | TimePenalty;
+  | ToggleBoardDirection;
 
 export * from './game';
 export * from './settings';

@@ -6,8 +6,8 @@ import {
   START_PLAY,
   END_ROUND,
   SET_ROUND_TIMER_VALUE,
-  RESET_COUNT,
-  TIME_PENALTY
+  DECREMENT_ROUND_TIMER_VALUE,
+  RESET_COUNT
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
 import { BaseGameState, TimePenaltySeconds } from '../constants/models';
@@ -24,7 +24,17 @@ export default function game(
           count: state.count + 1
         };
       }
-      break;
+      if (state.timeLeftInRound <= TimePenaltySeconds) {
+        return {
+          ...state,
+          roundInProgress: false,
+          timeLeftInRound: 0
+        };
+      }
+      return {
+        ...state,
+        timeLeftInRound: state.timeLeftInRound - TimePenaltySeconds
+      };
     case SET_COUNTDOWN_VALUE:
       return {
         ...state,
@@ -43,6 +53,11 @@ export default function game(
         ...state,
         timeLeftInRound: action.value
       };
+    case DECREMENT_ROUND_TIMER_VALUE:
+      return {
+        ...state,
+        timeLeftInRound: state.timeLeftInRound - action.value
+      };
     case END_ROUND:
       return {
         ...state,
@@ -53,18 +68,6 @@ export default function game(
       return {
         ...state,
         count: 0
-      };
-    case TIME_PENALTY:
-      if (state.timeLeftInRound <= TimePenaltySeconds) {
-        return {
-          ...state,
-          roundInProgress: false,
-          timeLeftInRound: 0
-        };
-      }
-      return {
-        ...state,
-        timeLeftInRound: state.timeLeftInRound - TimePenaltySeconds
       };
   }
   return state;

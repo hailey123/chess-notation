@@ -28,16 +28,17 @@ export interface SetRoundTimerValue {
   value: number;
 }
 
+export interface DecrementRoundTimerValue {
+  type: constants.DECREMENT_ROUND_TIMER_VALUE;
+  value: number;
+}
+
 export interface EndRound {
   type: constants.END_ROUND;
 }
 
 export interface ResetCount {
   type: constants.RESET_COUNT;
-}
-
-export interface TimePenalty {
-  type: constants.TIME_PENALTY;
 }
 
 export function handleSquareClicked(isTarget: boolean): HandleSquareClicked {
@@ -67,6 +68,13 @@ export function setRoundTimerValue(value: number): SetRoundTimerValue {
   };
 }
 
+export function decrementRoundTimerValue(value: number): DecrementRoundTimerValue {
+  return {
+    value,
+    type: constants.DECREMENT_ROUND_TIMER_VALUE
+  };
+}
+
 export function endRound(): EndRound {
   return {
     type: constants.END_ROUND
@@ -76,12 +84,6 @@ export function endRound(): EndRound {
 export function resetCount(): ResetCount {
   return {
     type: constants.RESET_COUNT
-  };
-}
-
-export function timePenalty(): TimePenalty {
-  return {
-    type: constants.TIME_PENALTY
   };
 }
 
@@ -121,17 +123,17 @@ export function setRoundTimerInterval(
   getState: () => StoreState,
   resolve: (value?: void | PromiseLike<void> | undefined) => void
 ) {
-  let timeLeftInRound = getState().game.timeLeftInRound;
-  const msPerRoundClockCount = 1000;
+  // const timeLeftInRound = getState().game.timeLeftInRound;
+  // const msPerRoundClockCount = 1000;
 
+  const oneSecond = 1;
   const roundTimerInterval = setInterval(() => {
-    timeLeftInRound -= 1;
-    if (timeLeftInRound > 0) {
-      dispatch(setRoundTimerValue(timeLeftInRound));
-    } else {
+    dispatch(decrementRoundTimerValue(oneSecond));
+
+    if (getState().game.timeLeftInRound <= 0) {
       clearInterval(roundTimerInterval);
       dispatch(endRound());
       resolve();
     }
-  },                                     msPerRoundClockCount);
+  },                                     oneSecond * 1000);
 }

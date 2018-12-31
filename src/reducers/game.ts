@@ -1,13 +1,14 @@
 import { Action } from '../actions';
 import { GameState } from '../types';
 import {
-  HANDLE_SQUARE_CLICKED,
+  HANDLE_CORRECT_SQUARE_CLICKED,
+  HANDLE_INCORRECT_SQUARE_CLICKED,
   SET_COUNTDOWN_VALUE,
   START_PLAY,
   END_ROUND,
   SET_ROUND_TIMER_VALUE,
   DECREMENT_ROUND_TIMER_VALUE,
-  RESET_COUNT
+  RESET_COUNT,
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
 import { BaseGameState, TimePenaltySeconds } from '../constants/models';
@@ -16,14 +17,13 @@ export default function game(
   state: GameState = BaseGameState,
   action: Action): GameState {
   switch (action.type) {
-    case HANDLE_SQUARE_CLICKED:
-      if (action.isTarget) {
-        return {
-          ...state,
-          currentCoords: generateRandomCoords(state.currentCoords),
-          count: state.count + 1
-        };
-      }
+    case HANDLE_CORRECT_SQUARE_CLICKED:
+      return {
+        ...state,
+        currentCoords: generateRandomCoords(state.currentCoords),
+        count: state.count + 1
+      };
+    case HANDLE_INCORRECT_SQUARE_CLICKED:
       if (state.timeLeftInRound <= TimePenaltySeconds) {
         return {
           ...state,

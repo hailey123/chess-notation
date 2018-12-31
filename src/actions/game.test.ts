@@ -8,22 +8,22 @@ import {
 import { GameState, StoreState } from '../types';
 
 describe('game actions', () => {
-  it('should create an action to handle target square clicked', () => {
-    const isTarget = true;
-    const expectedAction: actions.HandleSquareClicked = {
-      isTarget,
-      type: constants.HANDLE_SQUARE_CLICKED
-    };
-    expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
-  });
-  it('should create an action to handle non-target square clicked', () => {
-    const isTarget = false;
-    const expectedAction: actions.HandleSquareClicked = {
-      isTarget,
-      type: constants.HANDLE_SQUARE_CLICKED,
-    };
-    expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
-  });
+  // it('should create an action to handle target square clicked', () => {
+  //   const isTarget = true;
+  //   const expectedAction: actions.HandleSquareClicked = {
+  //     isTarget,
+  //     type: constants.HANDLE_SQUARE_CLICKED
+  //   };
+  //   expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
+  // });
+  // it('should create an action to handle non-target square clicked', () => {
+  //   const isTarget = false;
+  //   const expectedAction: actions.HandleSquareClicked = {
+  //     isTarget,
+  //     type: constants.HANDLE_SQUARE_CLICKED,
+  //   };
+  //   expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
+  // });
   it('should create an action to set the countdown value', () => {
     const value = 2;
     const expectedAction: actions.SetCountdownValue = {

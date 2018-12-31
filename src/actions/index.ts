@@ -1,5 +1,7 @@
 import {
-  HandleSquareClicked,
+  HandleCorrectSquareClicked,
+  HandleIncorrectSquareClicked,
+  DoneShowingPenalty,
   StartRound,
   SetCountdownValue,
   StartPlay,
@@ -10,7 +12,9 @@ import {
 } from './game';
 import { ToggleBoardDirection } from './settings';
 
-export type Action = HandleSquareClicked
+export type Action = HandleCorrectSquareClicked
+  | HandleIncorrectSquareClicked
+  | DoneShowingPenalty
   | StartRound
   | SetCountdownValue
   | StartPlay

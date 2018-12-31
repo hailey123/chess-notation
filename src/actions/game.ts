@@ -5,9 +5,16 @@ import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';
 import { RoundLengthSeconds, RoundStartCountdownSeconds } from '../constants/models';
 
-export interface HandleSquareClicked {
-  type: constants.HANDLE_SQUARE_CLICKED;
-  isTarget: boolean;
+export interface HandleCorrectSquareClicked {
+  type: constants.HANDLE_CORRECT_SQUARE_CLICKED;
+}
+
+export interface HandleIncorrectSquareClicked {
+  type: constants.HANDLE_INCORRECT_SQUARE_CLICKED;
+}
+
+export interface DoneShowingPenalty {
+  type: constants.DONE_SHOWING_PENALTY;
 }
 
 export interface StartRound {
@@ -39,13 +46,6 @@ export interface EndRound {
 
 export interface ResetCount {
   type: constants.RESET_COUNT;
-}
-
-export function handleSquareClicked(isTarget: boolean): HandleSquareClicked {
-  return {
-    isTarget,
-    type: constants.HANDLE_SQUARE_CLICKED
-  };
 }
 
 export function setCountdownValue(value: number): SetCountdownValue {
@@ -84,6 +84,44 @@ export function endRound(): EndRound {
 export function resetCount(): ResetCount {
   return {
     type: constants.RESET_COUNT
+  };
+}
+
+export function handleCorrectSquareClicked(): HandleCorrectSquareClicked {
+  return {
+    type: constants.HANDLE_CORRECT_SQUARE_CLICKED
+  };
+}
+
+export function handleIncorrectSquareClicked(): HandleIncorrectSquareClicked {
+  return {
+    type: constants.HANDLE_INCORRECT_SQUARE_CLICKED
+  };
+}
+
+export function doneShowingPenalty(): DoneShowingPenalty {
+  return {
+    type: constants.DONE_SHOWING_PENALTY
+  };
+}
+
+export function handleSquareClicked(
+  isTarget: boolean
+): ThunkAction<Promise<void>, StoreState, null, Action> {
+  return (dispatch: Dispatch) => {
+    if (isTarget) {
+      dispatch(handleCorrectSquareClicked());
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+      dispatch(handleIncorrectSquareClicked());
+      setTimeout(() => {
+        dispatch(doneShowingPenalty());
+        resolve();
+        // TODO: constant
+      },         500);
+    });
   };
 }
 

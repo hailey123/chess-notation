@@ -1,9 +1,9 @@
 import game from './game';
 import { GameState, Coordinate } from '../types';
 import * as util from '../lib/boardUtils';
-import { BaseGameState, TimePenaltySeconds, RoundLengthSeconds } from '../constants/models';
+import { BaseGameState, RoundLengthSeconds } from '../constants/models';
 import {
-  HANDLE_SQUARE_CLICKED,
+  // HANDLE_SQUARE_CLICKED,
   SET_COUNTDOWN_VALUE,
   START_PLAY,
   SET_ROUND_TIMER_VALUE,
@@ -12,7 +12,7 @@ import {
   RESET_COUNT
 } from '../constants/actions';
 import {
-  HandleSquareClicked,
+  // HandleSquareClicked,
   Action,
   SetCountdownValue,
   StartPlay,
@@ -47,65 +47,65 @@ describe('game reducer', () => {
   it('should return the initial state', () => {
     expect(game(undefined, {} as Action)).toEqual(BaseGameState);
   });
-  it('should handle HANDLE_SQUARE_CLICKED for target square', () => {
-    const countBefore = 4;
-    const stateBefore: GameState = {
-      ...BaseGameState,
-      count: countBefore
-    };
-    Object.freeze(stateBefore);
-    const stateAfter: GameState = {
-      ...BaseGameState,
-      currentCoords: mockCoordinate,
-      count: countBefore + 1
-    };
-    const action: HandleSquareClicked = {
-      type: HANDLE_SQUARE_CLICKED,
-      isTarget: true
-    };
+  // it('should handle HANDLE_SQUARE_CLICKED for target square', () => {
+  //   const countBefore = 4;
+  //   const stateBefore: GameState = {
+  //     ...BaseGameState,
+  //     count: countBefore
+  //   };
+  //   Object.freeze(stateBefore);
+  //   const stateAfter: GameState = {
+  //     ...BaseGameState,
+  //     currentCoords: mockCoordinate,
+  //     count: countBefore + 1
+  //   };
+  //   const action: HandleSquareClicked = {
+  //     type: HANDLE_SQUARE_CLICKED,
+  //     isTarget: true
+  //   };
 
-    expect(game(stateBefore, action)).toEqual(stateAfter);
-  });
-  it('should handle HANDLE_SQUARE_CLICKED for non-target square', () => {
-    const roundTimerValue = 4;
-    const stateBefore: GameState = {
-      ...BaseGameState,
-      timeLeftInRound: roundTimerValue
-    };
-    Object.freeze(stateBefore);
-    const stateAfter: GameState = {
-      ...BaseGameState,
-      timeLeftInRound: roundTimerValue - TimePenaltySeconds
-    };
-    Object.freeze(stateAfter);
-    const action: HandleSquareClicked = {
-      type: HANDLE_SQUARE_CLICKED,
-      isTarget: false
-    };
+  //   expect(game(stateBefore, action)).toEqual(stateAfter);
+  // });
+  // it('should handle HANDLE_SQUARE_CLICKED for non-target square', () => {
+  //   const roundTimerValue = 4;
+  //   const stateBefore: GameState = {
+  //     ...BaseGameState,
+  //     timeLeftInRound: roundTimerValue
+  //   };
+  //   Object.freeze(stateBefore);
+  //   const stateAfter: GameState = {
+  //     ...BaseGameState,
+  //     timeLeftInRound: roundTimerValue - TimePenaltySeconds
+  //   };
+  //   Object.freeze(stateAfter);
+  //   const action: HandleSquareClicked = {
+  //     type: HANDLE_SQUARE_CLICKED,
+  //     isTarget: false
+  //   };
 
-    expect(game(stateBefore, action)).toEqual(stateAfter);
-  });
-  it(
-    'should handle HANDLE_SQUARE_CLICKED for non-target square when < TimePenaltySeconds left',
-    () => {
-      const roundTimerValue = 2;
-      const stateBefore: GameState = {
-        ...BaseGameState,
-        timeLeftInRound: roundTimerValue
-      };
-      Object.freeze(stateBefore);
-      const stateAfter: GameState = {
-        ...BaseGameState,
-        timeLeftInRound: 0
-      };
-      Object.freeze(stateAfter);
-      const action: HandleSquareClicked = {
-        type: HANDLE_SQUARE_CLICKED,
-        isTarget: false
-      };
+  //   expect(game(stateBefore, action)).toEqual(stateAfter);
+  // });
+  // it(
+  //   'should handle HANDLE_SQUARE_CLICKED for non-target square when < TimePenaltySeconds left',
+  //   () => {
+  //     const roundTimerValue = 2;
+  //     const stateBefore: GameState = {
+  //       ...BaseGameState,
+  //       timeLeftInRound: roundTimerValue
+  //     };
+  //     Object.freeze(stateBefore);
+  //     const stateAfter: GameState = {
+  //       ...BaseGameState,
+  //       timeLeftInRound: 0
+  //     };
+  //     Object.freeze(stateAfter);
+  //     const action: HandleSquareClicked = {
+  //       type: HANDLE_SQUARE_CLICKED,
+  //       isTarget: false
+  //     };
 
-      expect(game(stateBefore, action)).toEqual(stateAfter);
-    });
+  //     expect(game(stateBefore, action)).toEqual(stateAfter);
+  //   });
   it('should handle SET_COUNTDOWN_VALUE', () => {
     const countdownValueBefore = 3;
     const countdownValueAfter = countdownValueBefore - 1;

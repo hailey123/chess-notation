@@ -8,22 +8,13 @@ import {
 import { GameState, StoreState } from '../types';
 
 describe('game actions', () => {
-  // it('should create an action to handle target square clicked', () => {
-  //   const isTarget = true;
-  //   const expectedAction: actions.HandleSquareClicked = {
-  //     isTarget,
-  //     type: constants.HANDLE_SQUARE_CLICKED
-  //   };
-  //   expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
-  // });
-  // it('should create an action to handle non-target square clicked', () => {
-  //   const isTarget = false;
-  //   const expectedAction: actions.HandleSquareClicked = {
-  //     isTarget,
-  //     type: constants.HANDLE_SQUARE_CLICKED,
-  //   };
-  //   expect(actions.handleSquareClicked(isTarget)).toEqual(expectedAction);
-  // });
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should create an action to set the countdown value', () => {
     const value = 2;
     const expectedAction: actions.SetCountdownValue = {
@@ -65,6 +56,57 @@ describe('game actions', () => {
     };
     expect(actions.resetCount()).toEqual(expectedAction);
   });
+  describe('handleSquareClicked', () => {
+    test('create an action to handle correct square clicked', () => {
+      const expectedAction: actions.HandleCorrectSquareClicked = {
+        type: constants.HANDLE_CORRECT_SQUARE_CLICKED
+      };
+      expect(actions.handleCorrectSquareClicked()).toEqual(expectedAction);
+    });
+    test('create an action to handle incorrect square clicked', () => {
+      const expectedAction: actions.HandleIncorrectSquareClicked = {
+        type: constants.HANDLE_INCORRECT_SQUARE_CLICKED
+      };
+      expect(actions.handleIncorrectSquareClicked()).toEqual(expectedAction);
+    });
+    test('create an action to finish showing a mis-click penalty', () => {
+      const expectedAction: actions.DoneShowingPenalty = {
+        type: constants.DONE_SHOWING_PENALTY
+      };
+      expect(actions.doneShowingPenalty()).toEqual(expectedAction);
+    });
+    it('should dispatch handleCorrectSquareClicked when isTarget is true', () => {
+      const mockDispatch = jest.fn();
+      const mockGetState = jest.fn();
+      const isTarget = true;
+      const thunkAction = actions.handleSquareClicked(isTarget);
+
+      thunkAction(mockDispatch, mockGetState, null);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actions.handleCorrectSquareClicked());
+    });
+    it('should dispatch handleIncorrectSquareClicked when isTarget is false', () => {
+      const mockDispatch = jest.fn();
+      const mockGetState = jest.fn();
+      const isTarget = false;
+      const thunkAction = actions.handleSquareClicked(isTarget);
+
+      thunkAction(mockDispatch, mockGetState, null);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actions.handleIncorrectSquareClicked());
+    });
+    it('should dispatch doneShowingPenalty after a timeout when isTarget is false', () => {
+      const mockDispatch = jest.fn();
+      const mockGetState = jest.fn();
+      const isTarget = false;
+      const thunkAction = actions.handleSquareClicked(isTarget);
+
+      thunkAction(mockDispatch, mockGetState, null);
+      expect(mockDispatch).not.toHaveBeenCalledWith(actions.doneShowingPenalty());
+      jest.runAllTimers();
+      expect(mockDispatch).toHaveBeenCalledWith(actions.doneShowingPenalty());
+    });
+  });
   describe('startRound', () => {
     it('should return a function that returns a Promise', () => {
       const mockDispatch = jest.fn();
@@ -78,7 +120,6 @@ describe('game actions', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn();
       const mockResolve = jest.fn();
-      const mockSetInterval = jest.spyOn(window, 'setInterval').mockImplementation();
 
       actions.setRoundStartCountdownInterval(mockDispatch, mockGetState, mockResolve);
 
@@ -88,8 +129,7 @@ describe('game actions', () => {
       expect(mockDispatch).toHaveBeenCalledWith(
         actions.setRoundTimerValue(RoundLengthSeconds)
       );
-      expect(mockSetInterval).toHaveBeenCalledTimes(1);
-      mockSetInterval.mockRestore();
+      expect(setInterval).toHaveBeenCalledTimes(1);
     });
     test('setRoundTimerInterval initializes properly', () => {
       const mockDispatch = jest.fn();
@@ -97,12 +137,10 @@ describe('game actions', () => {
         game: { timeLeftInRound: 30 } as GameState
       } as StoreState);
       const mockResolve = jest.fn();
-      const mockSetInterval = jest.spyOn(window, 'setInterval').mockImplementation();
 
       actions.setRoundTimerInterval(mockDispatch, mockGetState, mockResolve);
 
-      expect(mockSetInterval).toHaveBeenCalledTimes(1);
-      mockSetInterval.mockRestore();
+      expect(setInterval).toHaveBeenCalledTimes(1);
     });
   });
 });

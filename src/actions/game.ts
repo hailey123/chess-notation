@@ -3,7 +3,11 @@ import { StoreState } from '../types';
 import { Dispatch, AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from '.';
-import { RoundLengthSeconds, RoundStartCountdownSeconds } from '../constants/models';
+import {
+  RoundLengthSeconds,
+  RoundStartCountdownSeconds,
+  ShowPenaltyForMilliseconds
+} from '../constants/models';
 
 export interface HandleCorrectSquareClicked {
   type: constants.HANDLE_CORRECT_SQUARE_CLICKED;
@@ -119,8 +123,7 @@ export function handleSquareClicked(
       setTimeout(() => {
         dispatch(doneShowingPenalty());
         resolve();
-        // TODO: constant
-      },         500);
+      },         ShowPenaltyForMilliseconds);
     });
   };
 }
@@ -161,9 +164,6 @@ export function setRoundTimerInterval(
   getState: () => StoreState,
   resolve: (value?: void | PromiseLike<void> | undefined) => void
 ) {
-  // const timeLeftInRound = getState().game.timeLeftInRound;
-  // const msPerRoundClockCount = 1000;
-
   const oneSecond = 1;
   const roundTimerInterval = setInterval(() => {
     dispatch(decrementRoundTimerValue(oneSecond));

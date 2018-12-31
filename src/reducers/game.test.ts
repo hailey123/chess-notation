@@ -1,12 +1,13 @@
 import game from './game';
 import { GameState, Coordinate } from '../types';
 import * as util from '../lib/boardUtils';
-import { BaseGameState } from '../constants/models';
+import { BaseGameState, TimePenaltySeconds, RoundLengthSeconds } from '../constants/models';
 import {
   HANDLE_SQUARE_CLICKED,
   SET_COUNTDOWN_VALUE,
   START_PLAY,
-  // DECREMENT_ROUND_TIMER_VALUE,
+  SET_ROUND_TIMER_VALUE,
+  DECREMENT_ROUND_TIMER_VALUE,
   END_ROUND,
   RESET_COUNT
 } from '../constants/actions';
@@ -15,7 +16,8 @@ import {
   Action,
   SetCountdownValue,
   StartPlay,
-  // DecrementRoundTimerValue,
+  SetRoundTimerValue,
+  DecrementRoundTimerValue,
   EndRound,
   ResetCount
 } from '../actions';
@@ -64,19 +66,46 @@ describe('game reducer', () => {
 
     expect(game(stateBefore, action)).toEqual(stateAfter);
   });
-  // it('should handle HANDLE_SQUARE_CLICKED for non-target square', () => {
-  //   const stateBefore: GameState = {
-  //     ...BaseGameState,
-  //     count: 4
-  //   };
-  //   Object.freeze(stateBefore);
-  //   const action: HandleSquareClicked = {
-  //     type: HANDLE_SQUARE_CLICKED,
-  //     isTarget: false
-  //   };
+  it('should handle HANDLE_SQUARE_CLICKED for non-target square', () => {
+    const roundTimerValue = 4;
+    const stateBefore: GameState = {
+      ...BaseGameState,
+      timeLeftInRound: roundTimerValue
+    };
+    Object.freeze(stateBefore);
+    const stateAfter: GameState = {
+      ...BaseGameState,
+      timeLeftInRound: roundTimerValue - TimePenaltySeconds
+    };
+    Object.freeze(stateAfter);
+    const action: HandleSquareClicked = {
+      type: HANDLE_SQUARE_CLICKED,
+      isTarget: false
+    };
 
-  //   expect(game(stateBefore, action)).toEqual(stateBefore);
-  // });
+    expect(game(stateBefore, action)).toEqual(stateAfter);
+  });
+  it(
+    'should handle HANDLE_SQUARE_CLICKED for non-target square when < TimePenaltySeconds left',
+    () => {
+      const roundTimerValue = 2;
+      const stateBefore: GameState = {
+        ...BaseGameState,
+        timeLeftInRound: roundTimerValue
+      };
+      Object.freeze(stateBefore);
+      const stateAfter: GameState = {
+        ...BaseGameState,
+        timeLeftInRound: 0
+      };
+      Object.freeze(stateAfter);
+      const action: HandleSquareClicked = {
+        type: HANDLE_SQUARE_CLICKED,
+        isTarget: false
+      };
+
+      expect(game(stateBefore, action)).toEqual(stateAfter);
+    });
   it('should handle SET_COUNTDOWN_VALUE', () => {
     const countdownValueBefore = 3;
     const countdownValueAfter = countdownValueBefore - 1;
@@ -117,25 +146,43 @@ describe('game reducer', () => {
 
     expect(game(stateBefore, action)).toEqual(stateAfter);
   });
-  // it('should handle DECREMENT_ROUND_TIMER_VALUE', () => {
-  //   const timerValueBefore = 3;
-  //   const timerValueAfter = timerValueBefore - 1;
-  //   const stateBefore: GameState = {
-  //     ...BaseGameState,
-  //     timeLeftInRound: timerValueBefore
-  //   };
-  //   Object.freeze(stateBefore);
-  //   const stateAfter: GameState = {
-  //     ...BaseGameState,
-  //     timeLeftInRound: timerValueAfter
-  //   };
-  //   const action: DecrementRoundTimerValue = {
-  //     type: DECREMENT_ROUND_TIMER_VALUE,
-  //     value: timerValueAfter
-  //   };
+  it('should handle SET_ROUND_TIMER_VALUE', () => {
+    const stateBefore: GameState = {
+      ...BaseGameState,
+      timeLeftInRound: 0
+    };
+    Object.freeze(stateBefore);
+    const stateAfter: GameState = {
+      ...BaseGameState,
+      timeLeftInRound: RoundLengthSeconds
+    };
+    const action: SetRoundTimerValue = {
+      type: SET_ROUND_TIMER_VALUE,
+      value: RoundLengthSeconds
+    };
 
-  //   expect(game(stateBefore, action)).toEqual(stateAfter);
-  // });
+    expect(game(stateBefore, action)).toEqual(stateAfter);
+  });
+  it('should handle DECREMENT_ROUND_TIMER_VALUE', () => {
+    const timerValueBefore = 22;
+    const decrementSeconds = 1;
+    const timerValueAfter = timerValueBefore - decrementSeconds;
+    const stateBefore: GameState = {
+      ...BaseGameState,
+      timeLeftInRound: timerValueBefore
+    };
+    Object.freeze(stateBefore);
+    const stateAfter: GameState = {
+      ...BaseGameState,
+      timeLeftInRound: timerValueAfter
+    };
+    const action: DecrementRoundTimerValue = {
+      type: DECREMENT_ROUND_TIMER_VALUE,
+      value: decrementSeconds
+    };
+
+    expect(game(stateBefore, action)).toEqual(stateAfter);
+  });
   it('should handle END_ROUND', () => {
     const stateBefore: GameState = {
       ...BaseGameState,

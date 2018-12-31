@@ -1,6 +1,10 @@
 import * as actions from './game';
 import * as constants from '../constants/actions';
-// import { RoundStartCountdownSeconds, RoundLengthSeconds } from '../constants/models';
+import {
+  TimePenaltySeconds,
+  RoundLengthSeconds,
+  RoundStartCountdownSeconds
+} from '../constants/models';
 import { GameState, StoreState } from '../types';
 
 describe('game actions', () => {
@@ -34,14 +38,21 @@ describe('game actions', () => {
     };
     expect(actions.startPlay()).toEqual(expectedAction);
   });
-  // it('should create an action to set the round timer value', () => {
-  //   const value = 40;
-  //   const expectedAction: actions.DecrementRoundTimerValue = {
-  //     value,
-  //     type: constants.DECREMENT_ROUND_TIMER_VALUE
-  //   };
-  //   expect(actions.decrementRoundTimerValue(value)).toEqual(expectedAction);
-  // });
+  it('should create an action to set the round timer value', () => {
+    const expectedAction: actions.SetRoundTimerValue = {
+      value: RoundLengthSeconds,
+      type: constants.SET_ROUND_TIMER_VALUE
+    };
+    expect(actions.setRoundTimerValue(RoundLengthSeconds)).toEqual(expectedAction);
+  });
+  it('should create an action to decrement the round timer value', () => {
+    const value = TimePenaltySeconds;
+    const expectedAction: actions.DecrementRoundTimerValue = {
+      value,
+      type: constants.DECREMENT_ROUND_TIMER_VALUE
+    };
+    expect(actions.decrementRoundTimerValue(value)).toEqual(expectedAction);
+  });
   it('should create an action to end a round', () => {
     const expectedAction: actions.EndRound = {
       type: constants.END_ROUND
@@ -63,23 +74,23 @@ describe('game actions', () => {
 
       expect(thunkAction(mockDispatch, mockGetState, null)).toBeInstanceOf(Promise);
     });
-    // test('setRoundStartCountdownInterval initializes properly', () => {
-    //   const mockDispatch = jest.fn();
-    //   const mockGetState = jest.fn();
-    //   const mockResolve = jest.fn();
-    //   const mockSetInterval = jest.spyOn(window, 'setInterval').mockImplementation();
+    test('setRoundStartCountdownInterval initializes properly', () => {
+      const mockDispatch = jest.fn();
+      const mockGetState = jest.fn();
+      const mockResolve = jest.fn();
+      const mockSetInterval = jest.spyOn(window, 'setInterval').mockImplementation();
 
-    //   actions.setRoundStartCountdownInterval(mockDispatch, mockGetState, mockResolve);
+      actions.setRoundStartCountdownInterval(mockDispatch, mockGetState, mockResolve);
 
-    //   expect(mockDispatch).toHaveBeenCalledWith(
-    //     actions.setCountdownValue(RoundStartCountdownSeconds)
-    //   );
-    //   expect(mockDispatch).toHaveBeenCalledWith(
-    //     actions.decrementRoundTimerValue(RoundLengthSeconds)
-    //   );
-    //   expect(mockSetInterval).toHaveBeenCalledTimes(1);
-    //   mockSetInterval.mockRestore();
-    // });
+      expect(mockDispatch).toHaveBeenCalledWith(
+        actions.setCountdownValue(RoundStartCountdownSeconds)
+      );
+      expect(mockDispatch).toHaveBeenCalledWith(
+        actions.setRoundTimerValue(RoundLengthSeconds)
+      );
+      expect(mockSetInterval).toHaveBeenCalledTimes(1);
+      mockSetInterval.mockRestore();
+    });
     test('setRoundTimerInterval initializes properly', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn().mockReturnValue({

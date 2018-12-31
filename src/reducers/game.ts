@@ -1,29 +1,42 @@
 import { Action } from '../actions';
 import { GameState } from '../types';
 import {
-  HANDLE_SQUARE_CLICKED,
+  HANDLE_CORRECT_SQUARE_CLICKED,
+  HANDLE_INCORRECT_SQUARE_CLICKED,
   SET_COUNTDOWN_VALUE,
   START_PLAY,
   END_ROUND,
   SET_ROUND_TIMER_VALUE,
-  RESET_COUNT
+  DECREMENT_ROUND_TIMER_VALUE,
+  RESET_COUNT,
+  DONE_SHOWING_PENALTY,
 } from '../constants/actions';
 import { generateRandomCoords } from '../lib/boardUtils';
-import { BaseGameState } from '../constants/models';
+import { BaseGameState, TimePenaltySeconds } from '../constants/models';
 
 export default function game(
   state: GameState = BaseGameState,
   action: Action): GameState {
   switch (action.type) {
-    case HANDLE_SQUARE_CLICKED:
-      if (action.isTarget) {
+    case HANDLE_CORRECT_SQUARE_CLICKED:
+      return {
+        ...state,
+        currentCoords: generateRandomCoords(state.currentCoords),
+        count: state.count + 1
+      };
+    case HANDLE_INCORRECT_SQUARE_CLICKED:
+      if (state.timeLeftInRound <= TimePenaltySeconds) {
         return {
           ...state,
-          currentCoords: generateRandomCoords(state.currentCoords),
-          count: state.count + 1
+          roundInProgress: false,
+          timeLeftInRound: 0
         };
       }
-      break;
+      return {
+        ...state,
+        showingPenalty: true,
+        timeLeftInRound: state.timeLeftInRound - TimePenaltySeconds
+      };
     case SET_COUNTDOWN_VALUE:
       return {
         ...state,
@@ -42,6 +55,11 @@ export default function game(
         ...state,
         timeLeftInRound: action.value
       };
+    case DECREMENT_ROUND_TIMER_VALUE:
+      return {
+        ...state,
+        timeLeftInRound: state.timeLeftInRound - action.value
+      };
     case END_ROUND:
       return {
         ...state,
@@ -52,6 +70,11 @@ export default function game(
       return {
         ...state,
         count: 0
+      };
+    case DONE_SHOWING_PENALTY:
+      return {
+        ...state,
+        showingPenalty: false
       };
   }
   return state;

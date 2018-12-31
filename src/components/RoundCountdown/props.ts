@@ -1,5 +1,6 @@
 type PropsFromState = {
-  secondsRemaining: number
+  secondsRemaining: number,
+  showingPenalty: boolean
 };
 
 export type Props = PropsFromState;

@@ -5,13 +5,16 @@ export const Files: File[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 export const RoundStartCountdownSeconds = 3;
 export const RoundLengthSeconds = 30;
+export const TimePenaltySeconds = 3;
+export const ShowPenaltyForMilliseconds = 500;
 
 export const BaseGameState: GameState = Object.freeze({
   countdownValue: null,
   currentCoords: null,
   timeLeftInRound: RoundLengthSeconds,
   roundInProgress: false,
-  count: 0
+  count: 0,
+  showingPenalty: false
 });
 
 export const BaseSettingsState: SettingsState = Object.freeze({

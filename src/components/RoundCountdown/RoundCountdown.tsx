@@ -8,12 +8,12 @@ import './RoundCountdown.css';
 
 class RoundCountdown extends React.PureComponent<Props> {
   render(): JSX.Element {
-    const { secondsRemaining } = this.props;
+    const { secondsRemaining, showingPenalty } = this.props;
     const clockTime = clockTimeFromSeconds(this.props.secondsRemaining);
     const displayTime = clockTimeToString(clockTime);
     const classNames = classnames(
       'round-countdown',
-      secondsRemaining === 0 ? 'countdown-finished' : ''
+      secondsRemaining === 0 || showingPenalty ? 'red' : ''
     );
     return <div className={classNames}>
       {displayTime}

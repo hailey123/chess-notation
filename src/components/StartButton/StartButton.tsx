@@ -8,11 +8,13 @@ import './StartButton.css';
 
 class StartButton extends React.PureComponent<Props> {
   render(): JSX.Element {
+    const { enabled, startRound } = this.props;
     return <Button
+      disabled={!enabled}
       variant="contained"
       color="secondary"
       className="start-button"
-      onClick={this.props.startRound}>
+      onClick={startRound}>
       {START_BUTTON_TEXT}
     </Button>;
   }

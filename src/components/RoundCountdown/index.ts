@@ -2,11 +2,12 @@ import { connect } from 'react-redux';
 
 import RoundCountdown from './RoundCountdown';
 import { StoreState } from '../../types';
+import { getTimeLeftInRound, getShowingPenalty } from '../../selectors';
 
-export function mapStateToProps({ game }: StoreState) {
+export function mapStateToProps(state: StoreState) {
   return {
-    secondsRemaining: game.timeLeftInRound,
-    showingPenalty: game.showingPenalty
+    secondsRemaining: getTimeLeftInRound(state),
+    showingPenalty: getShowingPenalty(state)
   };
 }
 

@@ -6,5 +6,10 @@
   "editor.formatOnSave": true,
   "markdown.extension.preview.autoShowPreviewToSide": true,
   "typescript.preferences.importModuleSpecifier": "relative",
-  "typescript.preferences.quoteStyle": "single"
+  "typescript.preferences.quoteStyle": "single",
+  "cSpell.words": [
+    "memoized",
+    "reselect"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

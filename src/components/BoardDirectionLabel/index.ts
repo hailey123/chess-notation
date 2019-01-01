@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import BoardDirectionLabel from './BoardDirectionLabel';
 import { StoreState } from '../../types';
 import { PropsFromState } from './props';
+import { getPlayerColor } from '../../selectors';
 
-export function mapStateToProps({ settings }: StoreState): PropsFromState {
+export function mapStateToProps(state: StoreState): PropsFromState {
   return {
-    playerColor: settings.playAsBlack ? 'Black' : 'White'
+    playerColor: getPlayerColor(state)
   };
 }
 

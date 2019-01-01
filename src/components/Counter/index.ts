@@ -2,10 +2,11 @@ import Counter from './Counter';
 import { StoreState } from '../../types';
 import { PropsFromState } from './props';
 import { connect } from 'react-redux';
+import { getCount } from '../../selectors';
 
-export function mapStateToProps({ game }: StoreState): PropsFromState {
+export function mapStateToProps(state: StoreState): PropsFromState {
   return {
-    count: game.count
+    count: getCount(state)
   };
 }
 

@@ -2,19 +2,19 @@ import { connect } from 'react-redux';
 
 import Board from './Board';
 import { StoreState } from '../../types';
+import {
+  getPlayAsBlack,
+  getLightSquareColor,
+  getDarkSquareColor,
+  getCountdownValue
+} from '../../selectors';
 
-export function mapStateToProps({ settings, game }: StoreState) {
-  const {
-    playAsBlack,
-    lightSquareColor,
-    darkSquareColor
-  } = settings;
-  const { countdownValue } = game;
+export function mapStateToProps(state: StoreState) {
   return {
-    playAsBlack,
-    lightSquareColor,
-    darkSquareColor,
-    countdownValue
+    playAsBlack: getPlayAsBlack(state),
+    lightSquareColor: getLightSquareColor(state),
+    darkSquareColor: getDarkSquareColor(state),
+    countdownValue: getCountdownValue(state)
   };
 }
 

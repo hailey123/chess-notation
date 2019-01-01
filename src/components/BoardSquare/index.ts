@@ -4,13 +4,13 @@ import BoardSquare from './BoardSquare';
 import { handleSquareClicked } from '../../actions';
 import { PropsPassedIn } from './props';
 import { StoreState } from '../../types';
-import { coordinatesEqual } from '../../lib/boardUtils';
+import { makeGetIsTargetSquare, getRoundInProgress } from '../../selectors';
 
-export function mapStateToProps({ game }: StoreState, ownProps: PropsPassedIn) {
-  const targetCoords = game.currentCoords;
+export function mapStateToProps(state: StoreState, ownProps: PropsPassedIn) {
+  const getIsTargetSquare = makeGetIsTargetSquare(ownProps);
   return {
-    isTarget: targetCoords && coordinatesEqual(targetCoords, ownProps.coordinate),
-    roundInProgress: game.roundInProgress
+    isTarget: getIsTargetSquare(state),
+    roundInProgress: getRoundInProgress(state)
   };
 }
 

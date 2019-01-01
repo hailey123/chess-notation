@@ -4,11 +4,11 @@ import StartButton from './StartButton';
 import { startRound } from '../../actions';
 import { PropsFromState } from './props';
 import { StoreState } from '../../types';
-import { getRoundInitiated } from '../../selectors';
+import { getRoundNotStarted } from '../../selectors';
 
 export function mapStateToProps(state: StoreState): PropsFromState {
   return {
-    enabled: getRoundInitiated(state)
+    enabled: getRoundNotStarted(state)
   };
 }
 

@@ -34,10 +34,10 @@ export const getShowingPenalty = createSelector(
 );
 
 /**
- * Returns true from the point the START button is clicked to when the
- * round timer expires
+ * Returns true when the start button hasn't been clicked and there isn't
+ * a round in progress
  */
-export const getRoundInitiated = createSelector(
+export const getRoundNotStarted = createSelector(
   getGame, (game: GameState) => !game.countdownValue && !game.roundInProgress
 );
 
@@ -46,7 +46,7 @@ export const getRoundInitiated = createSelector(
 export const makeGetIsTargetSquare = (props: { coordinate: Coordinate }) => createSelector(
   getCurrentCoordinate, (
     coordinate: Coordinate
-  ) => coordinate && coordinatesEqual(coordinate, props.coordinate)
+  ) => !!coordinate && coordinatesEqual(coordinate, props.coordinate)
 );
 
 export const getPlayAsBlack = createSelector(
@@ -65,6 +65,10 @@ export const getDarkSquareColor = createSelector(
  * Returns the color that the player is "playing as", in accordance with
  * the current board direction
  */
-export const getPlayerColor: (state: StoreState) => PlayerColor = createSelector(
-  getSettings, (settings: SettingsState) => settings.playAsBlack ? 'Black' : 'White'
+export const getPlayerColor = createSelector(
+  getSettings, (settings: SettingsState) => {
+    let playerColor: PlayerColor;
+    playerColor = settings.playAsBlack ? 'Black' : 'White';
+    return playerColor;
+  }
 );

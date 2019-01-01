@@ -1,4 +1,4 @@
-import { StoreState, Coordinate } from '../../types';
+import { StoreState } from '../../types';
 import { BaseGameState, BaseSettingsState } from '../../constants/models';
 import { mapStateToProps } from '.';
 jest.mock('../../selectors');

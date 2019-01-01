@@ -66,7 +66,7 @@ describe('selectors', () => {
       ...BaseGameState,
       timeLeftInRound
     };
-    expect(getTimeLeftInRound.resultFunc(game)).toEqual(timeLeftInRound);
+    expect(getTimeLeftInRound.resultFunc(game)).toBe(timeLeftInRound);
   });
   test('getRoundInProgress', () => {
     const roundInProgress = true;
@@ -74,7 +74,7 @@ describe('selectors', () => {
       ...BaseGameState,
       roundInProgress
     };
-    expect(getRoundInProgress.resultFunc(game)).toEqual(roundInProgress);
+    expect(getRoundInProgress.resultFunc(game)).toBe(roundInProgress);
   });
   test('getCount', () => {
     const count = 3;
@@ -82,7 +82,7 @@ describe('selectors', () => {
       ...BaseGameState,
       count
     };
-    expect(getCount.resultFunc(game)).toEqual(count);
+    expect(getCount.resultFunc(game)).toBe(count);
   });
   test('getShowingPenalty', () => {
     const showingPenalty = true;
@@ -90,7 +90,7 @@ describe('selectors', () => {
       ...BaseGameState,
       showingPenalty
     };
-    expect(getShowingPenalty.resultFunc(game)).toEqual(showingPenalty);
+    expect(getShowingPenalty.resultFunc(game)).toBe(showingPenalty);
   });
   test('getRoundNotStarted when round not started', () => {
     const countdownValue = null;
@@ -100,7 +100,7 @@ describe('selectors', () => {
       countdownValue,
       roundInProgress
     };
-    expect(getRoundNotStarted.resultFunc(game)).toEqual(true);
+    expect(getRoundNotStarted.resultFunc(game)).toBe(true);
   });
   test('getRoundNotStarted when counting down', () => {
     const countdownValue = 3;
@@ -110,7 +110,7 @@ describe('selectors', () => {
       countdownValue,
       roundInProgress
     };
-    expect(getRoundNotStarted.resultFunc(game)).toEqual(false);
+    expect(getRoundNotStarted.resultFunc(game)).toBe(false);
   });
   test('getRoundNotStarted when round in progress', () => {
     const countdownValue = null;
@@ -120,7 +120,7 @@ describe('selectors', () => {
       countdownValue,
       roundInProgress
     };
-    expect(getRoundNotStarted.resultFunc(game)).toEqual(false);
+    expect(getRoundNotStarted.resultFunc(game)).toBe(false);
   });
   test('makeGetIsTargetSquare for null coordinate', () => {
     const props = {

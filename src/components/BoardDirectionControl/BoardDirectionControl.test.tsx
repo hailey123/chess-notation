@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { Props } from './props';
 import BoardDirectionControl from './BoardDirectionControl';
-import { FormControlLabel } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 describe('BoardDirectionControl', () => {
   const baseProps: Props = {

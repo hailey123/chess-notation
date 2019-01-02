@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { FormControlLabel, Checkbox } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-import './BoardDirectionControl.css';
 import { Props } from './props';
 import {
   BOARD_DIRECTION_CONTROL_LABEL,
   BOARD_DIRECTION_LABEL_PREFIX
 } from '../../constants/userFacingStrings';
+
+import './BoardDirectionControl.css';
 
 class BoardDirectionControl extends React.Component<Props> {
   public render() {

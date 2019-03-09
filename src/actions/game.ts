@@ -6,7 +6,8 @@ import { Action } from '.';
 import {
   RoundLengthSeconds,
   RoundStartCountdownSeconds,
-  ShowPenaltyForMilliseconds
+  ShowPenaltyForMilliseconds,
+  OneSecondInMs as MsPerSecond
 } from '../constants/models';
 
 export interface HandleCorrectSquareClicked {
@@ -149,7 +150,6 @@ export function runStartCountdown(dispatch: Dispatch<AnyAction>): Promise<void> 
     let roundStartCountdownValue = RoundStartCountdownSeconds;
     dispatch(setCountdownValue(roundStartCountdownValue));
     dispatch(setRoundTimerValue(RoundLengthSeconds));
-    const msPerRoundStartCountdownCount = 1000;
 
     const roundStartCountdownClockInterval = setInterval(() => {
       roundStartCountdownValue -= 1;
@@ -159,12 +159,12 @@ export function runStartCountdown(dispatch: Dispatch<AnyAction>): Promise<void> 
         clearInterval(roundStartCountdownClockInterval);
         resolve();
       }
-    },                                                   msPerRoundStartCountdownCount);
+    },                                                   MsPerSecond);
   });
 }
 
 /**
- * Counts down the current round of play.
+ * Counts down the current round of play using an interval.
  * @param dispatch store dispatch function
  * @param getState store getState method
  * @returns a promise that resolves when there is no more time in the round
@@ -173,8 +173,8 @@ export function runRoundTimer(
   dispatch: Dispatch<AnyAction>,
   getState: () => StoreState
 ): Promise<void> {
+  const oneSecond = 1;
   return new Promise(resolve => {
-    const oneSecond = 1;
     const roundTimerInterval = setInterval(() => {
       dispatch(decrementRoundTimerValue(oneSecond));
 
@@ -182,6 +182,6 @@ export function runRoundTimer(
         clearInterval(roundTimerInterval);
         resolve();
       }
-    },                                     oneSecond * 1000);
+    },                                     MsPerSecond);
   });
 }

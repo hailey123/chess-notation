@@ -7,6 +7,7 @@ export const RoundStartCountdownSeconds = 3;
 export const RoundLengthSeconds = 30;
 export const TimePenaltySeconds = 3;
 export const ShowPenaltyForMilliseconds = 500;
+export const OneSecondInMs = 1000;
 
 export const BaseGameState: GameState = Object.freeze({
   countdownValue: null,

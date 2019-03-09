@@ -6,7 +6,8 @@ import { Action } from '.';
 import {
   RoundLengthSeconds,
   RoundStartCountdownSeconds,
-  ShowPenaltyForMilliseconds
+  ShowPenaltyForMilliseconds,
+  OneSecondInMs as MsPerSecond
 } from '../constants/models';
 
 export interface HandleCorrectSquareClicked {
@@ -129,49 +130,58 @@ export function handleSquareClicked(
 }
 
 export function startRound(): ThunkAction<Promise<void>, StoreState, null, Action> {
-  return (dispatch: Dispatch, getState: () => StoreState) => {
+  return async (dispatch: Dispatch, getState: () => StoreState) => {
     dispatch(resetCount());
-    return new Promise((resolve) => {
-      setRoundStartCountdownInterval(dispatch, getState, resolve);
-    });
+
+    await runStartCountdown(dispatch);
+    dispatch(startPlay());
+
+    await runRoundTimer(dispatch, getState);
+    dispatch(endRound());
   };
 }
+/**
+ * Counts down to the start of the round using an interval.
+ * @param dispatch store dispatch function
+ * @returns a promise that resolves when the round should start
+ */
+export function runStartCountdown(dispatch: Dispatch<AnyAction>): Promise<void> {
+  return new Promise(resolve => {
+    let roundStartCountdownValue = RoundStartCountdownSeconds;
+    dispatch(setCountdownValue(roundStartCountdownValue));
+    dispatch(setRoundTimerValue(RoundLengthSeconds));
 
-export function setRoundStartCountdownInterval(
-  dispatch: Dispatch<AnyAction>,
-  getState: () => StoreState,
-  resolve: (value?: void | PromiseLike<void> | undefined) => void
-) {
-  let roundStartCountdownValue = RoundStartCountdownSeconds;
-  dispatch(setCountdownValue(roundStartCountdownValue));
-  dispatch(setRoundTimerValue(RoundLengthSeconds));
-  const msPerRoundStartCountdownCount = 1000;
-
-  const roundStartCountdownClockInterval = setInterval(() => {
-    roundStartCountdownValue -= 1;
-    if (roundStartCountdownValue > 0) {
-      dispatch(setCountdownValue(roundStartCountdownValue));
-    } else {
-      clearInterval(roundStartCountdownClockInterval);
-      dispatch(startPlay());
-      setRoundTimerInterval(dispatch, getState, resolve);
-    }
-  },                                                   msPerRoundStartCountdownCount);
+    const roundStartCountdownClockInterval = setInterval(() => {
+      roundStartCountdownValue -= 1;
+      if (roundStartCountdownValue > 0) {
+        dispatch(setCountdownValue(roundStartCountdownValue));
+      } else {
+        clearInterval(roundStartCountdownClockInterval);
+        resolve();
+      }
+    },                                                   MsPerSecond);
+  });
 }
 
-export function setRoundTimerInterval(
+/**
+ * Counts down the current round of play using an interval.
+ * @param dispatch store dispatch function
+ * @param getState store getState method
+ * @returns a promise that resolves when there is no more time in the round
+ */
+export function runRoundTimer(
   dispatch: Dispatch<AnyAction>,
-  getState: () => StoreState,
-  resolve: (value?: void | PromiseLike<void> | undefined) => void
-) {
+  getState: () => StoreState
+): Promise<void> {
   const oneSecond = 1;
-  const roundTimerInterval = setInterval(() => {
-    dispatch(decrementRoundTimerValue(oneSecond));
+  return new Promise(resolve => {
+    const roundTimerInterval = setInterval(() => {
+      dispatch(decrementRoundTimerValue(oneSecond));
 
-    if (getState().game.timeLeftInRound <= 0) {
-      clearInterval(roundTimerInterval);
-      dispatch(endRound());
-      resolve();
-    }
-  },                                     oneSecond * 1000);
+      if (getState().game.timeLeftInRound <= 0) {
+        clearInterval(roundTimerInterval);
+        resolve();
+      }
+    },                                     MsPerSecond);
+  });
 }

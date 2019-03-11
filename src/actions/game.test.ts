@@ -121,17 +121,11 @@ describe('game actions', () => {
 
       expect(mockDispatch).toHaveBeenCalledWith(actions.resetCount());
     });
-    test('setRoundStartCountdownInterval sets up countdown, timer & interval', () => {
+    test('setRoundStartCountdownInterval initializes properly', () => {
       const mockDispatch = jest.fn();
 
       actions.runStartCountdown(mockDispatch);
 
-      expect(mockDispatch).toHaveBeenCalledWith(
-        actions.setCountdownValue(RoundStartCountdownSeconds)
-      );
-      expect(mockDispatch).toHaveBeenCalledWith(
-        actions.setRoundTimerValue(RoundLengthSeconds)
-      );
       expect(setInterval).toHaveBeenCalledTimes(1);
     });
     test('setRoundStartCountdownInterval counts down to the round start', () => {

@@ -112,7 +112,7 @@ describe('game actions', () => {
     });
   });
   describe('startRound', () => {
-    it('should reset the move count', () => {
+    it('should reset the move count and timer values', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn();
 
@@ -120,15 +120,19 @@ describe('game actions', () => {
       thunkAction(mockDispatch, mockGetState, null);
 
       expect(mockDispatch).toHaveBeenCalledWith(actions.resetCount());
+      expect(mockDispatch).toHaveBeenCalledWith(
+        actions.setCountdownValue(RoundStartCountdownSeconds)
+      );
+      expect(mockDispatch).toHaveBeenCalledWith(actions.setRoundTimerValue(RoundLengthSeconds));
     });
-    test('setRoundStartCountdownInterval initializes properly', () => {
+    test('runStartCountdown initializes properly', () => {
       const mockDispatch = jest.fn();
 
       actions.runStartCountdown(mockDispatch);
 
       expect(setInterval).toHaveBeenCalledTimes(1);
     });
-    test('setRoundStartCountdownInterval counts down to the round start', () => {
+    test('runStartCountdown counts down to the round start', () => {
       const mockDispatch = jest.fn();
 
       actions.runStartCountdown(mockDispatch);
@@ -148,7 +152,7 @@ describe('game actions', () => {
       jest.runOnlyPendingTimers();
       expect(clearInterval).toHaveBeenCalledTimes(1);
     });
-    test('setRoundTimerInterval initializes properly', () => {
+    test('runRoundTimer initializes properly', () => {
       const mockDispatch = jest.fn();
       const mockGetState = jest.fn().mockReturnValue({
         game: { timeLeftInRound: 30 } as GameState
@@ -159,7 +163,7 @@ describe('game actions', () => {
       expect(setInterval).toHaveBeenCalledTimes(1);
     });
   });
-  test('setRoundTimerInterval counts down the round', () => {
+  test('runRoundTimer counts down the round', () => {
     const mockDispatch = jest.fn();
     // timeRemaining of 1 causes the interval to execute twice:
     // once to just decrement the time remaining and the second time

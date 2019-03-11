@@ -132,6 +132,8 @@ export function handleSquareClicked(
 export function startRound(): ThunkAction<Promise<void>, StoreState, null, Action> {
   return async (dispatch: Dispatch, getState: () => StoreState) => {
     dispatch(resetCount());
+    dispatch(setRoundTimerValue(RoundLengthSeconds));
+    dispatch(setCountdownValue(RoundStartCountdownSeconds));
 
     await runStartCountdown(dispatch);
     dispatch(startPlay());
@@ -146,11 +148,8 @@ export function startRound(): ThunkAction<Promise<void>, StoreState, null, Actio
  * @returns a promise that resolves when the round should start
  */
 export function runStartCountdown(dispatch: Dispatch<AnyAction>): Promise<void> {
+  let roundStartCountdownValue = RoundStartCountdownSeconds;
   return new Promise(resolve => {
-    let roundStartCountdownValue = RoundStartCountdownSeconds;
-    dispatch(setCountdownValue(roundStartCountdownValue));
-    dispatch(setRoundTimerValue(RoundLengthSeconds));
-
     const roundStartCountdownClockInterval = setInterval(() => {
       roundStartCountdownValue -= 1;
       if (roundStartCountdownValue > 0) {

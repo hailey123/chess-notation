@@ -6,12 +6,12 @@ import { Coordinate, Rank, File } from '../../types';
 
 describe('NotationInstruction', () => {
   it('has the correct className for styling', () => {
-    const wrapper = shallow(<NotationInstruction />);
+    const wrapper = shallow(<NotationInstruction currentCoords={null} />);
 
     expect(wrapper.hasClass('notation-instruction')).toBeTruthy();
   });
   it('shows a question mark when there\'s no instruction', () => {
-    const wrapper = shallow(<NotationInstruction />);
+    const wrapper = shallow(<NotationInstruction currentCoords={null} />);
 
     expect(wrapper.text()).toBe('?');
   });

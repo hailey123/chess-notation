@@ -1,4 +1,4 @@
-type PropsFromState = {
+export type PropsFromState = {
   playAsBlack: boolean;
   lightSquareColor: string;
   darkSquareColor: string;

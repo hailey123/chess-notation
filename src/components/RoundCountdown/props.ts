@@ -1,4 +1,4 @@
-type PropsFromState = {
+export type PropsFromState = {
   secondsRemaining: number,
   showingPenalty: boolean
 };

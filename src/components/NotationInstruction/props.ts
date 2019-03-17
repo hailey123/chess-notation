@@ -1,7 +1,7 @@
 import { Coordinate } from '../../types';
 
-type PropsFromState = {
-  currentCoords?: Coordinate
+export type PropsFromState = {
+  currentCoords: Coordinate | null;
 };
 
 export type Props = PropsFromState;

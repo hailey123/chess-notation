@@ -26,8 +26,8 @@ export interface LeaderboardState { }
 
 export interface SettingsState {
   playAsBlack: boolean;
-  lightSquareColor?: string;
-  darkSquareColor?: string;
+  lightSquareColor: string;
+  darkSquareColor: string;
 }
 
 export interface StoreState {

@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose, Store } from 'redux';
 import reduxThunk from 'redux-thunk';
 import game from './reducers/game';
 import leaderboard from './reducers/leaderboard';
@@ -6,7 +6,7 @@ import settings from './reducers/settings';
 import { StoreState } from './types';
 import { Action } from './actions';
 
-export function configureStore(): any {
+export function configureStore(): Store {
   const rootReducer = combineReducers({ game, leaderboard, settings });
 
   const middleware = compose(
